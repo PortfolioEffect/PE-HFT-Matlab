@@ -16,17 +16,17 @@ market data to enable classic portfolio analysis at intraday horizons.
 After checkout add inner PortfolioEffect folder to MATLAB's path using "Set Path" menu. 
 Then call any method of the package in MATLAB editor to continue with the set-up:
 
-	    +++++++++++++++++++++++++++++++++++++++++++++++++
-	    Welcome to PortfolioEffect Quant Toolbox.
-	    Setup will download required binary files (~5mb).
-		Please, wait...
-		SUCCESS. File downloaded to: 
-		/home/appadmin/.matlab/R2015a/ice9-quant-client-1.0-allinone.jar
-		Updating java class path file...
-		SUCCESS. Java class path updated.
+	     +++++++++++++++++++++++++++++++++++++++++++++++++
+	     Welcome to PortfolioEffect Quant Toolbox.
+	     Setup will download required binary files (~5mb).
+		 Please, wait...
+		 SUCCESS. File downloaded to: 
+		 /home/appadmin/.matlab/R2015a/ice9-quant-client-1.0-allinone.jar
+		 Updating java class path file...
+		 SUCCESS. Java class path updated.
 		
-		Setup complete! Restart Matlab session now.
-		+++++++++++++++++++++++++++++++++++++++++++++++++
+		 Setup complete! Restart Matlab session now.
+		 +++++++++++++++++++++++++++++++++++++++++++++++++
 
 Restart MATLAB to complete PortfolioEffect toolbox set-up.
 
@@ -49,7 +49,7 @@ locate your API credentials on the main page:
 Run the following commands to set your account API credentials for the
 PortfolioEffect MATLAB Toolbox.
 
-		util_setCredentials('API Username', 'API Password', 'API Key');
+		  util_setCredentials('API Username', 'API Password', 'API Key');
 
 You will need to do it only once as your credentials are stored between sessions
 on your local machine to speed up future logons. You would need to repeat
@@ -86,10 +86,10 @@ timestamp expressed in milliseconds from 1970-01-01 00:00:00 EST.
 		  
 If index symbol is specified, it is silently ignored.
 
-			data_spy=importdata('data_spy.mat'); 
+		  data_spy=importdata('data_spy.mat'); 
 	
-			% Create portfolio
-			portfolio=portfolio_create('priceDataIx',data_spy);
+		  % Create portfolio
+		  portfolio=portfolio_create('priceDataIx',data_spy);
 		
 
 #### Add Positions
