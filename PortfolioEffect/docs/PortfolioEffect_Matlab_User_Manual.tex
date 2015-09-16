@@ -107,7 +107,7 @@ Inc.}}\\[2cm]
 \addcontentsline{toc}{chapter}{Contents}
 \bibliographystyle{amsplain}%}
 \renewcommand{\bibname}{Contents}
-\tableofcontents
+\tableofcontents 
 
 \chapter{Toolbox Installation}
 PortfolioEffect client for MATLAB is provided as a zip archive for all types of
@@ -151,7 +151,7 @@ The PortfolioEffect toolbox is now fully configured.
 All portfolio computations are performed on PortfolioEffect cloud servers.
 To obtain a free non-professional account, you need to follow a quick sign-up
 process on our website:
-\href{http://www.portfolioeffect.com/registration}{www.portfolioeffect.com/registration}.\par
+\href{https://www.portfolioeffect.com/registration}{www.portfolioeffect.com/registration}.\par
 Please use a valid sign-up address - it will be used to email your
 account activation link.
 
@@ -159,7 +159,7 @@ account activation link.
 Log in to you account and locate your API credentials on the main page
 
 \includegraphics[width=5in]{img/api-settings.png}
-
+ 
 \section{Set API Credentials in MATLAB} 
 Run the following commands to set your account API credentials for the
 PortfolioEffect MATLAB Toolbox.
@@ -181,7 +181,7 @@ You might want to pre-pend at least N =(4 x windowLength) data points to the
 beginning of the interval of interest which would be used for initial calibration of portfolio metrics.
 \subsection{Create Portfolio} 
 Method
-\href{http://www.portfolioeffect.com/docs/platform/quant/functions/general-functions/portfolio-create}{portfolio\_create()}.
+\href{https://www.portfolioeffect.com/docs/platform/quant/functions/general-functions/portfolio-create}{portfolio\_create()}.
 takes a vector of index prices in the format (UTC timestamp, price) with UTC
 timestamp expressed in milliseconds from 1970-01-01 00:00:00 EST.
 \begin{lstlisting}
@@ -207,7 +207,7 @@ portfolio=portfolio_create('priceDataIx',data_spy);
 
 \subsection {Add Positions}
 Positions are added using 
-\href{http://www.portfolioeffect.com/docs/platform/quant/functions/general-functions/portfolio-add-position}{portfolio\_addPosition()}
+\href{https://www.portfolioeffect.com/docs/platform/quant/functions/general-functions/portfolio-add-position}{portfolio\_addPosition()}
 with 'priceData' in the same format as index price.
 \begin{lstlisting}
 data_goog=importdata('data_goog.mat');
@@ -222,12 +222,12 @@ portfolio_addPosition(portfolio,'AAPL',[300,150],'time',[1412266600000,141227660
 
 \section{Server Data}
 At PortfolioEffect we are capturing and storing 1-second intraday bar history for a 
-\href{http://www.portfolioeffect.com/docs/platform/quant/instruments}{all NASDAQ traded equites}.
+\href{https://www.portfolioeffect.com/docs/symbology}{all NASDAQ traded equites}.
 This server-side dataset spans from January 2013 to the latest trading time minus five minutes. 
 It could be used to construct asset portfolios and compute intraday portfolio metrics.
 \subsection {Create Portfolio}
 Method
-\href{http://www.portfolioeffect.com/docs/platform/quant/functions/general-functions/portfolio-create}{portfolio\_create()}
+\href{https://www.portfolioeffect.com/docs/platform/quant/functions/general-functions/portfolio-create}{portfolio\_create()}
 creates new asset portfolio or overwrites an existing portfolio object with the
 same name. \par
 When using server-side data, it only requires a time interval that would be
@@ -257,7 +257,7 @@ portfolio=portfolio_create('fromTime','t-5','toTime','t');
 
 \subsection {Add Positions}
 Positions are added by calling
-\href{http://www.portfolioeffect.com/docs/platform/quant/functions/general-functions/portfolio-add-position}{portfolio\_addPosition()}
+\href{https://www.portfolioeffect.com/docs/platform/quant/functions/general-functions/portfolio-add-position}{portfolio\_addPosition()}
 method on a portfolio object with a list of symbols and quantities. For
 positions that were rebalanced or had non-default holding periods a 'time' argument could be used to specify rebalancing timestamps.
 \begin{lstlisting}
