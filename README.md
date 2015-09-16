@@ -130,7 +130,9 @@ Interval boundaries are passed in the following format:
 * 'yyyy-MM-dd' (e.g. '2014-10-01')
 * 't-N' (e.g. 't-5' is latest trading time minus 5 days)
 *  UTC timestamp in milliseconds (mills from '1970-01-01 00:00:00') in EST time zone
-  		  
+  		 
+For example:
+  
 		 % Timestamp in "yyyy-MM-dd HH:MM:SS" format
 		 portfolio=portfolio_create('fromTime','2014-10-01 09:30:00','toTime','2014-10-02 16:00:00');
 			
@@ -139,6 +141,7 @@ Interval boundaries are passed in the following format:
 			
 		 % Timestamp in "t-N" format
 		 portfolio=portfolio_create('fromTime','t-5','toTime','t');
+
 
 #### Add Positions
 Positions are added by calling [portfolio_addPosition()][]
