@@ -126,10 +126,10 @@ Index symbol could be specified as well with a default value of "SPY" - SPDR S&P
 
 Interval boundaries are passed in the following format:
 		  
-		 "yyyy-MM-dd HH:MM:SS" (e.g. "2014-10-01 09:30:00")
-		 "yyyy-MM-dd" (e.g. "2014-10-01")
-		 "t-N" (e.g. "t-5" is latest trading time minus 5 days)
-		 "UTC timestamp in milliseconds (mills from "1970-01-01 00:00:00") in EST time zone
+* 'yyyy-MM-dd HH:MM:SS' (e.g. '2014-10-01 09:30:00')
+* 'yyyy-MM-dd' (e.g. '2014-10-01')
+* 't-N' (e.g. 't-5' is latest trading time minus 5 days)
+*  UTC timestamp in milliseconds (mills from '1970-01-01 00:00:00') in EST time zone
   		  
 		 % Timestamp in "yyyy-MM-dd HH:MM:SS" format
 		 portfolio=portfolio_create('fromTime','2014-10-01 09:30:00','toTime','2014-10-02 16:00:00');
