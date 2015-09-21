@@ -41,9 +41,9 @@
 % util_POSIXTimeToDate(data_goog(:,1))
 function [date_str] = util_POSIXTimeToDate(POSIXTime,format)
 if nargin ==1
-date_str=com.snowfallsystems.ice9.quant.client.util.DateTimeUtil.POSIXTimeToDateStr( int64(POSIXTime));
+date_str=com.portfolioeffect.quant.client.util.DateTimeUtil.POSIXTimeToDateStr( int64(POSIXTime));
 date_str = char(cell(date_str));
 else
-date_str=com.snowfallsystems.ice9.quant.client.util.DateTimeUtil.POSIXTimeToDateInt( int64(POSIXTime),format);
+date_str=com.portfolioeffect.quant.client.util.DateTimeUtil.POSIXTimeToDateInt( int64(POSIXTime),format);
 end
 end

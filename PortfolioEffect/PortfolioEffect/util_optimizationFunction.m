@@ -13,7 +13,7 @@ portfolio_settings(portfolio,set);
 %     balans=[balans,quantity(2)];
 % end
 % portfolio=portfolioContainer();
-% portfolio.java=com.snowfallsystems.ice9.quant.client.portfolio.Portfolio(optimizer.portfolio.java);
+% portfolio.java=com.portfolioeffect.quant.client.portfolio.Portfolio(optimizer.portfolio.java);
 for time = rebalancingTimes
 %     result=portfolioContainer.setToTime(util_POSIXTimeToDate(time));
 %         if result.hasError()
@@ -48,7 +48,7 @@ end
     
 end
 portfolioResult=portfolioContainer();
-portfolioResult.java=com.snowfallsystems.ice9.quant.client.portfolio.Portfolio(optimizer.portfolio.java);
+portfolioResult.java=com.portfolioeffect.quant.client.portfolio.Portfolio(optimizer.portfolio.java);
 FromTime=portfolioResult.java.getFromTime;
 	for i = 1:length(symbols)
 		portfolio_addPosition(portfolioResult,symbols(i),balans(i,:),[FromTime,util_POSIXTimeToDate(optimizer.rebalancingTimes)]);

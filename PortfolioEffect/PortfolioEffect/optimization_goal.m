@@ -26,10 +26,36 @@
 %     Choose direction of optimization algorithm:
 %       'minimize' - maximization goal,
 %	    'maximize' - minimization goal
-
+%
 % confidenceInterval
 %        Confidence interval (in decimals) to be used as a cut-off point
 %        Applicable for 'VaR', 'CVaR', 'ModifiedSharpeRatio', 'StarrRatio' metrics only.
+%
+% windowLength
+%        Rolling window length for metric estimations and position history (look-behind duration) 
+%        used in computing forecast values. Available interval values are: 'Xs' - seconds, 
+%        'Xm' - minutes, 'Xh' - hours, 'Xd' - trading days (6.5 hours in a trading day), 
+%        'Xw' - weeks (5 trading days in 1 week), 'Xmo' - month (21 trading day in 1 month), 
+%        'Xy' - years (256 trading days in 1 year), 'all' - all observations are used. Default value is 
+%        '1d' - one trading day .
+%
+% forecastLength
+%        Forecast time step length (look-ahead duration). Available interval values are: 
+%        'Xs' - seconds, 'Xm' - minutes, 'Xh' - hours, 'Xd' - trading days (6.5 hours in a trading day), 
+%        'Xw' - weeks (5 trading days in 1 week), 'Xmo' - month (21 trading day in 1 month), 
+%        'Xy' - years (256 trading days in 1 year). Default value is '1m' - one trading day .
+%
+% forecastType
+%   	Forecast algorithm, if user-defined metric forecasts are not provided: \cr
+%   	'simple' - use last available metric value,\cr
+%   	'exp_smoothing' - use automatic exponential smoothing. \cr
+%   	Default value is 'exp_smoothing'.
+%
+% errorInDecimalPoints
+%   	Estimation error in decimal points for computing optimal weights. Smaller value slows down optimization algorithm, but increases precision.
+%
+% globalOptimumProbability
+%   	Required probability level of a global optimum. Higher value slows down optimization algorithm, but increases chance of finding globally optimal solution.
 %
 % Return Value
 %
@@ -73,14 +99,14 @@ end
 optimiz=optimizer();
 p = inputParser;
 defaultConfidenceInterval = 0.05;
-defaultGoal = 'None';
+defaultGoal = 'EquiWeight';
 defaultDirection = 'minimize';
 expectedGoal = {'EquiWeight','ContraintsOnly','Variance','VaR','CVaR','ExpectedReturn','Return','SharpeRatio','ModifiedSharpeRatio','StarrRatio'};
 expectedDirection = {'minimize', 'maximize'};
 defaultWindowLength='1m';
 defaultForecastLength='1m';
 expectedType={'simple','exp_smoothing'};
-defaultForecastType='simple';
+defaultForecastType='exp_smoothing';
 defaultErrorInDecimalPoints=1e-12;
 defaultGlobalOptimumProbability=0.99;
 
@@ -99,9 +125,9 @@ parse(p,portfolio,varargin{:});
 
 settings = portfolio_getSettings(portfolio);
 if strcmp(settings.portfolioMetricsMode,'portfolio')
-    optimizer_create=com.snowfallsystems.ice9.quant.client.portfolio.optimizer.StrategyOptimizer(portfolio.java,int32(p.Results.errorInDecimalPoints),int32(p.Results.globalOptimumProbability));
+    optimizer_create=com.portfolioeffect.quant.client.portfolio.optimizer.StrategyOptimizer(portfolio.java,double(p.Results.errorInDecimalPoints),double(p.Results.globalOptimumProbability));
 else
-    optimizer_create=com.snowfallsystems.ice9.quant.client.portfolio.optimizer.PortfolioOptimizer(portfolio.java,int32(p.Results.errorInDecimalPoints),int32(p.Results.globalOptimumProbability));
+    optimizer_create=com.portfolioeffect.quant.client.portfolio.optimizer.PortfolioOptimizer(portfolio.java,double(p.Results.errorInDecimalPoints),double(p.Results.globalOptimumProbability));
 end
 
 switch p.Results.goal
@@ -129,11 +155,11 @@ switch p.Results.goal
         error('Optimization metric not supported');
         
 end
-optimizer_create.setPortfolioValue(int32(-1));
+optimizer_create.setPortfolioValue(double(-1));
 optimiz.java=optimizer_create;
 optimiz.portfolio=portfolio;
-      optimiz.errorInDecimalPoints=int32(p.Results.errorInDecimalPoints);
-	  optimiz.globalOptimumProbability=int32(p.Results.globalOptimumProbability);
+optimiz.errorInDecimalPoints=p.Results.errorInDecimalPoints;
+optimiz.globalOptimumProbability=p.Results.globalOptimumProbability;
 optimiz.goal=p.Results.goal;
 optimiz.direction=p.Results.direction;
 optimiz.confidenceInterval=p.Results.confidenceInterval;

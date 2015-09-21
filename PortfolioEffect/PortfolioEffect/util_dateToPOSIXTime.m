@@ -42,7 +42,7 @@
 function [POSIXTime] = util_dateToPOSIXTime(DateTime)
 % import java classes
 DateTime=datestr(DateTime,'yyyy-mm-dd HH:MM:SS');
-check=1414818000000-double(com.snowfallsystems.ice9.quant.client.util.DateTimeUtil.toPOSIXTime( datestr('2014-11-01 01:00:00','yyyy-mm-dd HH:MM:SS')));
-POSIXTime=com.snowfallsystems.ice9.quant.client.util.DateTimeUtil.toPOSIXTime( DateTime);
+check=1414818000000-double(com.portfolioeffect.quant.client.util.DateTimeUtil.toPOSIXTime( datestr('2014-11-01 01:00:00','yyyy-mm-dd HH:MM:SS')));
+POSIXTime=com.portfolioeffect.quant.client.util.DateTimeUtil.toPOSIXTime( DateTime);
 POSIXTime=double(POSIXTime)+check;
 end

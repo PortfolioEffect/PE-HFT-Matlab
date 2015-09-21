@@ -101,7 +101,7 @@ end
 
 if isa(varargin{1},'portfolioContainer')
     portfolio=portfolioContainer();
-    portfolio_create=com.snowfallsystems.ice9.quant.client.portfolio.Portfolio(varargin{1}.java);
+    portfolio_create=com.portfolioeffect.quant.client.portfolio.Portfolio(varargin{1}.java);
     portfolio=setJava(portfolio,portfolio_create);
 else
 p = inputParser;
@@ -117,7 +117,7 @@ p = inputParser;
              
 parse(p,varargin{:});
 portfolio=portfolioContainer();
-portfolio_create=com.snowfallsystems.ice9.quant.client.portfolio.Portfolio(clientConnection);
+portfolio_create=com.portfolioeffect.quant.client.portfolio.Portfolio(clientConnection);
 if ischar(p.Results.fromTime) && ischar(p.Results.toTime) && p.Results.priceDataIx
     Results=portfolio_create.setFromTime(p.Results.fromTime);
     if Results.hasError()

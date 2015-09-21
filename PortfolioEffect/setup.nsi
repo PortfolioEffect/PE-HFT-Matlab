@@ -166,7 +166,7 @@ Section "-Install"
 		SetRegView 64
 	${EndIf}
 	
-	${StrReplace} "$INSTDIR\jar\ice9-quant-client-1.0-allinone.jar" "\" "/"
+	${StrReplace} "$INSTDIR\jar\portfolioeffect-quant-client-1.0-allinone.jar" "\" "/"
 	StrCpy $R3 $0
 	
 	Push $R1

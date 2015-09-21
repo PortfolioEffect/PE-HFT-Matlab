@@ -52,7 +52,7 @@ forecastingPortfolio.java.setParam('windowLength',optimizer.windowLength);
 % --- BEGIN forecasting code -- %
  settings = portfolio_getSettings(forecastingPortfolio);
  if strcmp(settings.portfolioMetricsMode,'portfolio')
-  forecastedValues=com.snowfallsystems.ice9.quant.client.portfolio.optimizer.ForecastedValues(optimizer.portfolio.java);
+  forecastedValues=com.portfolioeffect.quant.client.portfolio.optimizer.ForecastedValues(optimizer.portfolio.java);
     result=forecastedValues.setForecastTimeStep(optimizer.forecastLength);
   if result.hasError()
             disp(result.getErrorMessage())
@@ -91,7 +91,7 @@ end
   case 'Cumulant4'
             result=forecastedValues.setSymbolForecastedCumulant4(forecastedValueList.symbol,double(forecastedValueList.value),int64(DateToPOSIXTime(forecastedValueList.time)));
     % TODO finish with the list
-    % result<-.jcall(forecastedValues,returnSig="Lcom/snowfallsystems/ice9/quant/client/result/OptimizationMethodResult;",method="makeSimpleCumulantsForecast")
+    % result<-.jcall(forecastedValues,returnSig="Lcom/portfolioeffect/quant/client/result/OptimizationMethodResult;",method="makeSimpleCumulantsForecast")
     % errorCheck(result)
     end
         if result.hasError()
@@ -110,6 +110,7 @@ if isempty(optimizer.functions)
 optimizer_create=optimizer.java;
 result=optimizer_create.getOptimizedPortfolio();
      portfolio.java=util_getResult(result);
+     portfolio.optimization_info={char(result.getInfoParam('nFunctionExecute')) char(result.getInfoParam('nGlobalStart')) char(result.getInfoParam('nLocalSolution')) char(result.getInfoParam('nOptimizations')) char(result.getInfoParam('nConstraintSatisfied'))};
 else
 %     portfolio=util_optimizationFunction(optimizer);
 end

@@ -20,6 +20,7 @@
 classdef portfolioContainer
 properties
       java = 0;
+      optimization_info=null(1);
 end
    methods
              function td = setJava(td,s)
