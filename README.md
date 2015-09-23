@@ -161,7 +161,7 @@ positions that were rebalanced or had non-default holding periods a 'time' argum
 
 ## License
 
-This toolbox is released under the GPLv3 license. See the file LICENSE.
+This toolbox is released under the BSD license. See the file LICENSE.
 
 Usage of this toolbox with PortfolioEffect services shall be subject to the [Terms of Service][PortfolioEffect Terms].
 

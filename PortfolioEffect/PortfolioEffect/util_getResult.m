@@ -22,6 +22,7 @@ function [ result ] = util_getResult( data )
    case 'PORTFOLIO'
        result=data.getPortfolio(dataName);       
          end
+         disp(length(result))
     end
 end
 

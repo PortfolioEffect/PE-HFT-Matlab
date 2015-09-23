@@ -18,19 +18,7 @@
 % 
 % Copyright (C) 2010 - 2015 Snowfall Systems, Inc.
 %
-% This program is free software: you can redistribute it and/or modify
-% it under the terms of the GNU General Public License as published by
-% the Free Software Foundation, either version 3 of the License, or
-% (at your option) any later version.
 %
-% This program is distributed in the hope that it will be useful,
-% but WITHOUT ANY WARRANTY; without even the implied warranty of
-% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-% GNU General Public License for more details.
-%
-% You should have received a copy of the GNU General Public License
-% along with this program.  If not, see <http://www.gnu.org/licenses/>
-% 
 % Examples
 % 
 % dateStart = '2014-11-17 09:30:00';
@@ -52,7 +40,7 @@ forecastingPortfolio.java.setParam('windowLength',optimizer.windowLength);
 % --- BEGIN forecasting code -- %
  settings = portfolio_getSettings(forecastingPortfolio);
  if strcmp(settings.portfolioMetricsMode,'portfolio')
-  forecastedValues=com.portfolioeffect.quant.client.portfolio.optimizer.ForecastedValues(optimizer.portfolio.java);
+  forecastedValues=com.snowfallsystems.ice9.quant.client.portfolio.optimizer.ForecastedValues(optimizer.portfolio.java);
     result=forecastedValues.setForecastTimeStep(optimizer.forecastLength);
   if result.hasError()
             disp(result.getErrorMessage())
@@ -91,7 +79,7 @@ end
   case 'Cumulant4'
             result=forecastedValues.setSymbolForecastedCumulant4(forecastedValueList.symbol,double(forecastedValueList.value),int64(DateToPOSIXTime(forecastedValueList.time)));
     % TODO finish with the list
-    % result<-.jcall(forecastedValues,returnSig="Lcom/portfolioeffect/quant/client/result/OptimizationMethodResult;",method="makeSimpleCumulantsForecast")
+    % result<-.jcall(forecastedValues,returnSig="Lcom/snowfallsystems/ice9/quant/client/result/OptimizationMethodResult;",method="makeSimpleCumulantsForecast")
     % errorCheck(result)
     end
         if result.hasError()
@@ -112,6 +100,6 @@ result=optimizer_create.getOptimizedPortfolio();
      portfolio.java=util_getResult(result);
      portfolio.optimization_info={char(result.getInfoParam('nFunctionExecute')) char(result.getInfoParam('nGlobalStart')) char(result.getInfoParam('nLocalSolution')) char(result.getInfoParam('nOptimizations')) char(result.getInfoParam('nConstraintSatisfied'))};
 else
-%     portfolio=util_optimizationFunction(optimizer);
+    portfolio=util_optimizationFunction(optimizer);
 end
 end
