@@ -42,10 +42,8 @@ portfolio.java.getMetric(util_toJSONString(data));
 data.position=symbols(i);
         resultTemp=portfolio.java.getMetric(util_toJSONString(data));
      result=[result,double(resultTemp.getDoubleArray('value'))];
-     disp(length(double(resultTemp.getDoubleArray('value'))))
                                     end
     result=[double(resultTemp.getLongArray('time')),result];
-         disp(length(double(resultTemp.getLongArray('time'))))
     end
 else
     if strcmp(data.position,'no')
