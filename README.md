@@ -16,17 +16,17 @@ market data to enable classic portfolio analysis at intraday horizons.
 After checkout add inner PortfolioEffect folder to MATLAB's path using "Set Path" menu. 
 Then call any method of the package in MATLAB editor to continue with the set-up:
 
-	     +++++++++++++++++++++++++++++++++++++++++++++++++
-	     Welcome to PortfolioEffect Quant Toolbox.
-	     Setup will download required binary files (~5mb).
-		 Please, wait...
-		 SUCCESS. File downloaded to: 
-		 /home/appadmin/.matlab/R2015a/ice9-quant-client-1.0-allinone.jar
-		 Updating java class path file...
-		 SUCCESS. Java class path updated.
+	+++++++++++++++++++++++++++++++++++++++++++++++++
+	Welcome to PortfolioEffect Quant Toolbox.
+	Setup will download required binary files (~5mb).
+	Please, wait...
+	SUCCESS. File downloaded to: 
+	/home/appadmin/.matlab/R2015a/portfolioeffect-quant-client-1.0-allinone.jar
+	Updating java class path file...
+	SUCCESS. Java class path updated.
 		
-		 Setup complete! Restart Matlab session now.
-		 +++++++++++++++++++++++++++++++++++++++++++++++++
+	Setup complete! Restart Matlab session now.
+	+++++++++++++++++++++++++++++++++++++++++++++++++
 
 Restart MATLAB to complete PortfolioEffect toolbox set-up.
 
@@ -49,7 +49,7 @@ locate your API credentials on the main page:
 Run the following commands to set your account API credentials for the
 PortfolioEffect MATLAB Toolbox.
 
-		  util_setCredentials('API Username', 'API Password', 'API Key');
+	util_setCredentials('API Username', 'API Password', 'API Key');
 
 You will need to do it only once as your credentials are stored between sessions
 on your local machine to speed up future logons. You would need to repeat
@@ -72,24 +72,24 @@ beginning of the interval of interest which would be used for initial calibratio
 Method [portfolio_create()][] takes a vector of index prices in the format (UTC timestamp, price) with UTC
 timestamp expressed in milliseconds from 1970-01-01 00:00:00 EST.
 		
-		  Time          Value
-		  [1,] 1412256601000 99.30
-		  [2,] 1412256602000 99.33
-		  [3,] 1412256603000 99.30
-		  [4,] 1412256604000 99.26
-		  [5,] 1412256605000 99.36
-		  [6,] 1412256606000 99.36
-		  [7,] 1412256607000 99.36
-		  [8,] 1412256608000 99.38
-		  [9,] 1412256609000 99.40
-		  [10,] 1412256610000 99.37
+	Time          Value
+	[1,] 1412256601000 99.30
+	[2,] 1412256602000 99.33
+	[3,] 1412256603000 99.30
+	[4,] 1412256604000 99.26
+	[5,] 1412256605000 99.36
+	[6,] 1412256606000 99.36
+	[7,] 1412256607000 99.36
+	[8,] 1412256608000 99.38
+	[9,] 1412256609000 99.40
+	[10,] 1412256610000 99.37
 		  
 If index symbol is specified, it is silently ignored.
 
-		  data_spy=importdata('data_spy.mat'); 
+	data_spy=importdata('data_spy.mat'); 
 	
-		  % Create portfolio
-		  portfolio=portfolio_create('priceDataIx',data_spy);
+	% Create portfolio
+	portfolio=portfolio_create('priceDataIx',data_spy);
 		
 
 #### Add Positions
@@ -97,14 +97,14 @@ If index symbol is specified, it is silently ignored.
 Positions are added using [portfolio_addPosition()][] 
 with 'priceData' in the same format as index price.
 
-		  data_goog=importdata('data_goog.mat');
-		  data_aapl=importdata('data_aapl.mat');
+	data_goog=importdata('data_goog.mat');
+	data_aapl=importdata('data_aapl.mat');
 
-		  % Single position without rebalancing
-		  portfolio_addPosition(portfolio,'GOOG',100,'priceData',data_goog); 
+	% Single position without rebalancing
+	portfolio_addPosition(portfolio,'GOOG',100,'priceData',data_goog); 
 
-		  % Single position with rebalancing
-		  portfolio_addPosition(portfolio,'AAPL',[300,150],'time',[1412266600000,1412276600000],'priceData',data_aapl); 
+	% Single position with rebalancing
+	portfolio_addPosition(portfolio,'AAPL',[300,150],'time',[1412266600000,1412276600000],'priceData',data_aapl); 
 
 
 ### Server Data
@@ -133,14 +133,14 @@ Interval boundaries are passed in the following format:
   		 
 For example:
   
-		 % Timestamp in "yyyy-MM-dd HH:MM:SS" format
-		 portfolio=portfolio_create('fromTime','2014-10-01 09:30:00','toTime','2014-10-02 16:00:00');
-			
-		 % Timestamp in "yyyy-MM-dd" format
-		 portfolio=portfolio_create('fromTime','2014-10-01','toTime','2014-10-02');
-			
-		 % Timestamp in "t-N" format
-		 portfolio=portfolio_create('fromTime','t-5','toTime','t');
+	% Timestamp in "yyyy-MM-dd HH:MM:SS" format
+	portfolio=portfolio_create('fromTime','2014-10-01 09:30:00','toTime','2014-10-02 16:00:00');
+	
+	% Timestamp in "yyyy-MM-dd" format
+	portfolio=portfolio_create('fromTime','2014-10-01','toTime','2014-10-02');
+		
+	% Timestamp in "t-N" format
+	portfolio=portfolio_create('fromTime','t-5','toTime','t');
 
 
 #### Add Positions
@@ -148,15 +148,14 @@ Positions are added by calling [portfolio_addPosition()][]
 method on a portfolio object with a list of symbols and quantities. For
 positions that were rebalanced or had non-default holding periods a 'time' argument could be used to specify rebalancing timestamps.
 
-
-		 % Single position without rebalancing
-		 portfolio_addPosition(portfolio,'GOOG',200);
+	% Single position without rebalancing
+	portfolio_addPosition(portfolio,'GOOG',200);
 		
-		 % Multiple positions without rebalancing
-		 portfolio_addPosition(portfolio,{'C','GOOG'},[300,200]);
+	% Multiple positions without rebalancing
+	portfolio_addPosition(portfolio,{'C','GOOG'},[300,200]);
 		
-		 % Single position with rebalancing
-		 portfolio_addPosition(portfolio,'AAPL',[300,150],'time',['2014-10-02 09:30:01';'2014-10-02 11:30:01']);
+	% Single position with rebalancing
+	portfolio_addPosition(portfolio,'AAPL',[300,150],'time',['2014-10-02 09:30:01';'2014-10-02 11:30:01']);
 
 
 ## License
