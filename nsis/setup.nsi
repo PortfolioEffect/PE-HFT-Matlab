@@ -28,7 +28,7 @@ Var StartMenuFolder
 
 ; Installer Pages
 !insertmacro MUI_PAGE_WELCOME
-!insertmacro MUI_PAGE_LICENSE "license.txt"
+!insertmacro MUI_PAGE_LICENSE "..\LICENSE"
 !insertmacro MUI_PAGE_DIRECTORY
   
 !insertmacro MUI_PAGE_STARTMENU Application $StartMenuFolder
@@ -144,13 +144,16 @@ Section "-Install"
 	SetShellVarContext all
 	
 	SetOutPath "$INSTDIR"
-	File "..\license.txt"
+	File "..\LICENSE"
 		
 	SetOutPath "$INSTDIR\jar"
 	File "..\jar\*.jar"
 	
 	SetOutPath "$INSTDIR\docs"
 	File "..\docs\*.pdf"
+	
+	SetOutPath "$INSTDIR\demo"
+	File "..\demo\*.m"
 	
 	SetOutPath "$INSTDIR\PortfolioEffect"
 	File "..\PortfolioEffect\*.m"
@@ -226,6 +229,7 @@ Section "Uninstall"
 	; ADD FILES TO REMOVE HERE...
 	RMDir "$INSTDIR\jar"
 	RMDir "$INSTDIR\docs"
+	RMDir "$INSTDIR\demo"
 	RMDir "$INSTDIR\PortfolioEffect"
 	Delete "$INSTDIR\license.txt"
 	Delete "$INSTDIR\uninstall.exe"
