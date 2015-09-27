@@ -16,7 +16,7 @@ After checkout add inner PortfolioEffectHFT folder to MATLAB's path using "Set P
 Then call any method of the package in MATLAB editor to continue with the set-up:
 
 	+++++++++++++++++++++++++++++++++++++++++++++++++
-	Welcome to PortfolioEffectHFT Toolbox.
+	Welcome to PortfolioEffect HFT Toolbox.
 	Setup will download required binary files (~5mb).
 	Please, wait...
 	SUCCESS. File downloaded to: 
@@ -27,7 +27,7 @@ Then call any method of the package in MATLAB editor to continue with the set-up
 	Setup complete! Restart Matlab session now.
 	+++++++++++++++++++++++++++++++++++++++++++++++++
 
-Restart MATLAB to complete PortfolioEffectHFT toolbox set-up.
+Restart MATLAB to complete PortfolioEffect HFT toolbox set-up.
 
 ## Account Credentials
 
@@ -46,13 +46,13 @@ locate your API credentials on the main page:
 ### Set API Credentials in MATLAB
 
 Run the following commands to set your account API credentials for the
-PortfolioEffectHFT MATLAB Toolbox.
+PortfolioEffect HFT MATLAB Toolbox.
 
 	util_setCredentials('API Username', 'API Password', 'API Key');
 
 You will need to do it only once as your credentials are stored between sessions
 on your local machine to speed up future logons. You would need to repeat
-this procedure if you change your account password or install PortfolioEffectHFT
+this procedure if you change your account password or install PortfolioEffect HFT
 toolbox on another computer.
 
 You are now ready to call PortfolioEffect methods.
