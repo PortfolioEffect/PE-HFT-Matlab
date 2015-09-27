@@ -89,7 +89,7 @@ High Frequency Portfolio Analytics\\}
 \vspace{8cm}
 {\Large \bfseries User Manual \\}
 \vspace{0.3cm}
-{\Huge\bfseries PortfolioEffect Toolbox \\ for MATLAB \\ }
+{\Huge\bfseries PortfolioEffectHFT Toolbox \\ for MATLAB \\ }
 % ----------------------------------------------------------------
 \vspace{1.5cm}
 {Andrey Kostin \\ andrey.kostin@portfolioeffect.com} \\[14pt]
@@ -99,8 +99,8 @@ High Frequency Portfolio Analytics\\}
 Inc.}}\\[2cm]
 {August 20, 2015}
 \end{center}
-\end{titlepage} 
- 
+\end{titlepage}
+
 \bookmarksetup{startatroot}
 \cleardoublepage
 \phantomsection
@@ -110,8 +110,8 @@ Inc.}}\\[2cm]
 \tableofcontents 
 
 \chapter{Toolbox Installation}
-PortfolioEffect client for MATLAB is provided as a zip archive for all types of
-operating systems and as a self-install executable file for Windows. 
+PortfolioEffectHFT toolbox for MATLAB is provided as a zip archive for all
+types of operating systems and as a self-install executable file for Windows. 
 
 \section{Zip Archive (All OS)}
 Download zip archive with a toolbox from
@@ -120,12 +120,13 @@ PortfolioEfect
 or MATLAB Central
 \href{http://www.mathworks.com/matlabcentral/fileexchange}{File Exchange}.
 
-Once downloaded, unpack archive into the folder and add it to
-MATLAB's path using ``Set Path'' menu. Then call any method of the package in
+Once downloaded, unpack archive into the folder and add the 
+PortfolioEffectHFT folder to MATLAB's path using ``Set Path'' menu. 
+Then call any method of the package in
 MATLAB editor to continue with the set-up:
-\begin{lstlisting}
+\begin{lstlisting} 
 +++++++++++++++++++++++++++++++++++++++++++++++++
-Welcome to PortfolioEffect Quant Toolbox.
+Welcome to PortfolioEffect HFT Toolbox.
 
 Setup will download required binary files (~5mb).
 Please, wait...
@@ -138,14 +139,15 @@ Setup complete! Restart Matlab session now.
 +++++++++++++++++++++++++++++++++++++++++++++++++
 \end{lstlisting}
 
-Restart MATLAB to complete PortfolioEffect toolbox set-up.
+Restart MATLAB to complete installation.
 
 \section{Install Wizard (Windows)}
-Download self-installer for Windows from PortfolioEfect
+Download self-install executable for Windows from PortfolioEfect
 \href{https://www.portfolioeffect.com/docs/platform/quant/downloads}{downloads}.
-Follow the installation instructions. Once the wizard completes, add the
-installation folder to MATLAB's path using ``Set Path'' menu. 
-The PortfolioEffect toolbox is now fully configured.
+Follow the installation instructions. Once the wizard completes, add the 
+PortfolioEffectHFT folder to MATLAB's path using ``Set Path''
+menu.
+The PortfolioEffect HFT toolbox is now fully configured.
 
 \chapter{Account Credentials}
 All portfolio computations are performed on PortfolioEffect cloud servers.
@@ -162,11 +164,11 @@ Log in to you account and locate your API credentials on the main page
  
 \section{Set API Credentials in MATLAB} 
 Run the following commands to set your account API credentials for the
-PortfolioEffect MATLAB Toolbox.
+PortfolioEffect HFT Toolbox for MATLAB.
 You will need to do it only once as your credentials are stored between sessions
 on your local machine to speed up future logons. \par You would need to repeat
 this procedure if you change your account password or install PortfolioEffect
-toolbox on another computer.
+HFT toolbox on another computer.
 \begin{lstlisting}
 util_setCredentials('API Username', 'API Password', 'API Key');
 \end{lstlisting}
@@ -312,7 +314,7 @@ This setting should only be used when portfolio metrics mode is set to "portfoli
 When holdingPeriodsOnly is set to FALSE, trading strategy risk and performance
 metrics will be annualized to include time intervals when strategy had no market exposure at certain points (i.e. when position quantity were zero).
 When set to TRUE, trading strategy metrics are annualized only based on actual holding intervals.
- 
+
 \begin{lstlisting}
 portfolio=portfolio_create('fromTime','2014-10-01 09:30:00','toTime','2014-10-02 16:00:00');
 
