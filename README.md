@@ -2,22 +2,21 @@
   <img width="200" src="https://www.portfolioeffect.com/img/logo/portfolioeffect-logo-full-200-950.png" alt="PortfolioEffect">
 </a>
 
-# PortfolioEffect Quant - MATLAB Toolbox 
-MATLAB toolbox for high frequency portfolio analysis, intraday strategy backtests and portfolio optimization.
+# PortfolioEffect Quant - HFT Toolbox for MATLAB
+MATLAB toolbox package for high frequency trading (HFT) strategy backtests, intraday portfolio analysis and portfolio optimization.
 
 ## About PortfolioEffect
 
 PortfolioEffect platform employes high frequency microstructure model pipeline, cloud computing and server-side 
 market data to enable classic portfolio analysis at intraday horizons.
 
-
 ## Toolbox Installation
 
-After checkout add inner PortfolioEffect folder to MATLAB's path using "Set Path" menu. 
+After checkout add inner PortfolioEffectHFT folder to MATLAB's path using "Set Path" menu. 
 Then call any method of the package in MATLAB editor to continue with the set-up:
 
 	+++++++++++++++++++++++++++++++++++++++++++++++++
-	Welcome to PortfolioEffect Quant Toolbox.
+	Welcome to PortfolioEffectHFT Toolbox.
 	Setup will download required binary files (~5mb).
 	Please, wait...
 	SUCCESS. File downloaded to: 
@@ -28,7 +27,7 @@ Then call any method of the package in MATLAB editor to continue with the set-up
 	Setup complete! Restart Matlab session now.
 	+++++++++++++++++++++++++++++++++++++++++++++++++
 
-Restart MATLAB to complete PortfolioEffect toolbox set-up.
+Restart MATLAB to complete PortfolioEffectHFT toolbox set-up.
 
 ## Account Credentials
 
@@ -47,13 +46,13 @@ locate your API credentials on the main page:
 ### Set API Credentials in MATLAB
 
 Run the following commands to set your account API credentials for the
-PortfolioEffect MATLAB Toolbox.
+PortfolioEffectHFT MATLAB Toolbox.
 
 	util_setCredentials('API Username', 'API Password', 'API Key');
 
 You will need to do it only once as your credentials are stored between sessions
 on your local machine to speed up future logons. You would need to repeat
-this procedure if you change your account password or install PortfolioEffect
+this procedure if you change your account password or install PortfolioEffectHFT
 toolbox on another computer.
 
 You are now ready to call PortfolioEffect methods.
