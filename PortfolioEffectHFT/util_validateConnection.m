@@ -19,7 +19,7 @@ if isempty(clientConnection)
         if ~isempty(isError)
                             fprintf(cat(2,'\n',...
                     '+++++++++++++++++++++++++++++++++++++++++++++++++','\n',...
-                    'Welcome to PortfolioEffect Quant Toolbox.','\n'));
+                    'Welcome to PortfolioEffect HFT Toolbox.','\n'));
             complete = true;
             jpath = javaclasspath('-all');
             isice9jar=strfind(jpath,fullfile(prefdir,'portfolioeffect-quant-client-1.0-allinone.jar'));

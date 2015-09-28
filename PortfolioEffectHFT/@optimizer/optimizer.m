@@ -26,8 +26,9 @@ properties
       direction = null(1);
       confidenceInterval = null(1);
       forecastedValueLists=null(1);
-	  forecastLength=null(1);
+	  forecastTimeStep=null(1);
       forecastType=null(1);
-      windowLength=null(1);
+      forecastExponentialWindow=null(1);
+	  forecastPortfolioWindow=null(1);
 end
 end

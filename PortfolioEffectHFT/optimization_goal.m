@@ -31,7 +31,8 @@
 %        Confidence interval (in decimals) to be used as a cut-off point
 %        Applicable for 'VaR', 'CVaR', 'ModifiedSharpeRatio', 'StarrRatio' metrics only.
 %
-% windowLength
+%
+% forecastPortfolioWindow
 %        Rolling window length for metric estimations and position history (look-behind duration) 
 %        used in computing forecast values. Available interval values are: 'Xs' - seconds, 
 %        'Xm' - minutes, 'Xh' - hours, 'Xd' - trading days (6.5 hours in a trading day), 
@@ -39,7 +40,7 @@
 %        'Xy' - years (256 trading days in 1 year), 'all' - all observations are used. Default value is 
 %        '1d' - one trading day .
 %
-% forecastLength
+% forecastTimeStep
 %        Forecast time step length (look-ahead duration). Available interval values are: 
 %        'Xs' - seconds, 'Xm' - minutes, 'Xh' - hours, 'Xd' - trading days (6.5 hours in a trading day), 
 %        'Xw' - weeks (5 trading days in 1 week), 'Xmo' - month (21 trading day in 1 month), 
@@ -50,6 +51,12 @@
 %   	'simple' - use last available metric value,\cr
 %   	'exp_smoothing' - use automatic exponential smoothing. \cr
 %   	Default value is 'exp_smoothing'.
+%
+% forecastExponentialWindow
+%   	Length of exponential window if forecastType is set to 'exp_smoothing'. vailable interval values are: 
+%   	'Xs' - seconds, 'Xm' - minutes, 'Xh' - hours, 'Xd' - trading days (6.5 hours in a trading day), 
+%   	'Xw' - weeks (5 trading days in 1 week), 'Xmo' - month (21 trading day in 1 month), 
+%   	'Xy' - years (256 trading days in 1 year). Default value is '1m' - one trading day.
 %
 % errorInDecimalPoints
 %   	Estimation error in decimal points for computing optimal weights. Smaller value slows down optimization algorithm, but increases precision.
@@ -91,8 +98,9 @@ defaultGoal = 'EquiWeight';
 defaultDirection = 'minimize';
 expectedGoal = {'EquiWeight','ContraintsOnly','Variance','VaR','CVaR','ExpectedReturn','Return','SharpeRatio','ModifiedSharpeRatio','StarrRatio'};
 expectedDirection = {'minimize', 'maximize'};
-defaultWindowLength='1m';
-defaultForecastLength='1m';
+defaultforecastTimeStep='1m';
+defaultForecastExpWindow='5m';
+defaultForecastPortfolioWindow='1m';
 expectedType={'simple','exp_smoothing'};
 defaultForecastType='exp_smoothing';
 defaultErrorInDecimalPoints=1e-12;
@@ -103,9 +111,10 @@ addRequired(p,'portfolio');
 addOptional(p,'goal',defaultGoal,@(x) all(validatestring(char(x),expectedGoal)));
 addOptional(p,'direction',defaultDirection,@(x) all(validatestring(char(x),expectedDirection)));
 addOptional(p,'confidenceInterval',defaultConfidenceInterval,@isnumeric);
-addOptional(p,'windowLength',defaultWindowLength);
-addOptional(p,'forecastLength',defaultForecastLength);
+addOptional(p,'forecastPortfolioWindow',defaultForecastPortfolioWindow);
+addOptional(p,'forecastTimeStep',defaultforecastTimeStep);
 addOptional(p,'forecastType',defaultForecastType,@(x) all(validatestring(char(x),expectedType)));
+addOptional(p,'forecastExponentialWindow',defaultForecastExpWindow);
 addOptional(p,'errorInDecimalPoints',defaultErrorInDecimalPoints);
 addOptional(p,'globalOptimumProbability',defaultGlobalOptimumProbability);
 
@@ -151,8 +160,9 @@ optimiz.globalOptimumProbability=p.Results.globalOptimumProbability;
 optimiz.goal=p.Results.goal;
 optimiz.direction=p.Results.direction;
 optimiz.confidenceInterval=p.Results.confidenceInterval;
-optimiz.windowLength=p.Results.windowLength;
-optimiz.forecastLength=p.Results.forecastLength;
+optimiz.forecastTimeStep=p.Results.forecastTimeStep;
 optimiz.forecastType=p.Results.forecastType;
+optimiz.forecastExponentialWindow=p.Results.forecastExponentialWindow;
+optimiz.forecastPortfolioWindow=p.Results.forecastPortfolioWindow;
 
 end

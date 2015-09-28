@@ -34,11 +34,7 @@ function [portfolio] = optimization_run(optimizer)
 if ~util_validateConnection()
     return;
 end
-forecastingPortfolio=portfolio_create(optimizer.portfolio);
-forecastingPortfolio.java.setParam('isRebalancingHistoryEnabled','false');
-forecastingPortfolio.java.setParam('windowLength',optimizer.windowLength);
-% --- BEGIN forecasting code -- %
- settings = portfolio_getSettings(forecastingPortfolio);
+ settings = portfolio_getSettings(optimizer.portfolio);
  if strcmp(settings.portfolioMetricsMode,'portfolio')
   forecastedValues=com.snowfallsystems.ice9.quant.client.portfolio.optimizer.ForecastedValues(optimizer.portfolio.java);
     result=forecastedValues.setForecastTimeStep(optimizer.forecastLength);
@@ -46,11 +42,9 @@ forecastingPortfolio.java.setParam('windowLength',optimizer.windowLength);
             disp(result.getErrorMessage())
             error(char(result.getErrorMessage()));
         end
-  result=forecastedValues.makeSimpleCumulantsForecast(forecastingPortfolio.java,optimizer.forecastType);
-  if result.hasError()
-            disp(result.getErrorMessage())
-            error(char(result.getErrorMessage()));
-        end
+optimizer.java.setForecasterType(optimizer.forecastType);
+optimizer.java.setForecastExpWindow(optimizer.forecastExponentialWindow);
+optimizer.java.setForecastPortfolioWindow(optimizer.forecastPortfolioWindow);
   if ~isempty(optimizer.forecastedValueLists)
      for forecastedValueList = optimizer.forecastedValueLists 
 switch forecastedValueList.metricType
@@ -78,9 +72,6 @@ end
             result=forecastedValues.setSymbolForecastedCumulant3(forecastedValueList.symbol,double(forecastedValueList.value),int64(DateToPOSIXTime(forecastedValueList.time)));
   case 'Cumulant4'
             result=forecastedValues.setSymbolForecastedCumulant4(forecastedValueList.symbol,double(forecastedValueList.value),int64(DateToPOSIXTime(forecastedValueList.time)));
-    % TODO finish with the list
-    % result<-.jcall(forecastedValues,returnSig="Lcom/snowfallsystems/ice9/quant/client/result/OptimizationMethodResult;",method="makeSimpleCumulantsForecast")
-    % errorCheck(result)
     end
         if result.hasError()
             disp(result.getErrorMessage())
@@ -90,9 +81,6 @@ end
                     end
   optimizer.java.setForecastedValue(forecastedValues);
                     end
-
-% --- END forecasting code -- %
-
 if isempty(optimizer.functions)
     portfolio=portfolioContainer();
 optimizer_create=optimizer.java;
