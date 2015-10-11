@@ -55,7 +55,7 @@ end
 end
 disp('check')
 portfolioResult=portfolioContainer();
-portfolioResult.java=com.snowfallsystems.ice9.quant.client.portfolio.Portfolio(optimizer.portfolio.java);
+portfolioResult.java=com.portfolioeffect.quant.client.portfolio.Portfolio(optimizer.portfolio.java);
 FromTime=portfolioResult.java.getFromTime;
 	for i = 1:length(symbols)
 		portfolio_addPosition(portfolioResult,symbols(i),balans(:,i),'time',rebalancingTimes);

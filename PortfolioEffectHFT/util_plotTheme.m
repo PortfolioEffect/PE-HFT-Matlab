@@ -54,13 +54,22 @@ p = inputParser;
    defaultDkpanel= false;
    defaultBw = false;
    
-   addParameter(p,'Title',defaultTitle);
-   addParameter(p,'Subtitle',defaultSubtitle);
-   addParameter(p,'title_size',defaultTitle_size,@isnumeric);
-   addParameter(p,'base_size',defaultBase_size,@isnumeric);
-   addParameter(p,'dkpanel',defaultDkpanel,@islogical);
-   addParameter(p,'bw',defaultBw,@islogical);
-             
+
+   if verLessThan('matlab','8.2')
+   addParamValue(p,'Title',defaultTitle);
+   addParamValue(p,'Subtitle',defaultSubtitle);
+   addParamValue(p,'title_size',defaultTitle_size,@isnumeric);
+   addParamValue(p,'base_size',defaultBase_size,@isnumeric);
+   addParamValue(p,'dkpanel',defaultDkpanel,@islogical);
+   addParamValue(p,'bw',defaultBw,@islogical);
+else
+   p.addParameter('Title',defaultTitle);
+   p.addParameter('Subtitle',defaultSubtitle);
+   p.addParameter('title_size',defaultTitle_size,@isnumeric);
+   p.addParameter('base_size',defaultBase_size,@isnumeric);
+   p.addParameter('dkpanel',defaultDkpanel,@islogical);
+   p.addParameter('bw',defaultBw,@islogical);
+end          
 parse(p,varargin{:});
 if strcmp(char(p.Results.Subtitle),char('No subtitle'))&&~strcmp(char(p.Results.Title),'No title')
    title({strcat('\fontsize{',num2str(p.Results.title_size),'}',char(p.Results.Title))})

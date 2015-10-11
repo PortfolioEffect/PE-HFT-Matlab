@@ -36,8 +36,8 @@ if ~util_validateConnection()
 end
  settings = portfolio_getSettings(optimizer.portfolio);
  if strcmp(settings.portfolioMetricsMode,'portfolio')
-  forecastedValues=com.snowfallsystems.ice9.quant.client.portfolio.optimizer.ForecastedValues(optimizer.portfolio.java);
-    result=forecastedValues.setForecastTimeStep(optimizer.forecastLength);
+  forecastedValues=com.portfolioeffect.quant.client.portfolio.optimizer.ForecastedValues(optimizer.portfolio.java);
+    result=forecastedValues.setForecastTimeStep(optimizer.forecastTimeStep);
   if result.hasError()
             disp(result.getErrorMessage())
             error(char(result.getErrorMessage()));
@@ -47,12 +47,6 @@ optimizer.java.setForecastExpWindow(optimizer.forecastExponentialWindow);
 optimizer.java.setForecastPortfolioWindow(optimizer.forecastPortfolioWindow);
   if ~isempty(optimizer.forecastedValueLists)
      for forecastedValueList = optimizer.forecastedValueLists 
-switch forecastedValueList.metricType
-    case 'portfolio'
-        portfolioIce.setRebalancingHistoryEnabled(true);
-    case 'price'
-        portfolioIce.setRebalancingHistoryEnabled(false);
-end
     switch forecastedValueList.metricType
    case 'ExpReturn'
                 result=forecastedValues.setSymbolForecastedExpReturn(forecastedValueList.symbol,double(forecastedValueList.value),int64(DateToPOSIXTime(forecastedValueList.time)));

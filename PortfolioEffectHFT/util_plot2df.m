@@ -68,18 +68,31 @@ p = inputParser;
    defaultBase_size = 14;
    defaultDkpanel= false;
    defaultBw = false;
-   
-   addParameter(p,'Title',defaultTitle);
-   addParameter(p,'Subtitle',defaultSubtitle);
-   addParameter(p,'title_size',defaultTitle_size,@isnumeric);
-   addParameter(p,'lines_size',defaultLines_size,@isnumeric);   
-   addParameter(p,'base_size',defaultBase_size,@isnumeric);
-   addParameter(p,'dkpanel',defaultDkpanel,@islogical);
-   addParameter(p,'bw',defaultBw,@islogical);
+% if (datenum(version('-date')))
+
+if verLessThan('matlab','8.2')
+    %    addParameter(p,'legend',defaultLegend);
+    addParamValue(p,'Title',defaultTitle);
+    addParamValue(p,'Subtitle',defaultSubtitle);
+    addParamValue(p,'title_size',defaultTitle_size,@isnumeric);
+    addParamValue(p,'lines_size',defaultLines_size,@isnumeric);
+    addParamValue(p,'base_size',defaultBase_size,@isnumeric);
+    addParamValue(p,'dkpanel',defaultDkpanel,@islogical);
+    addParamValue(p,'bw',defaultBw,@islogical);
+else
+    %    addParameter(p,'legend',defaultLegend);
+    p.addParameter('Title',defaultTitle);
+    p.addParameter('Subtitle',defaultSubtitle);
+    p.addParameter('title_size',defaultTitle_size,@isnumeric);
+    p.addParameter('lines_size',defaultLines_size,@isnumeric);
+    p.addParameter('base_size',defaultBase_size,@isnumeric);
+    p.addParameter('dkpanel',defaultDkpanel,@islogical);
+    p.addParameter('bw',defaultBw,@islogical);
+end
              
 parse(p,varargin{:});
 
-nameList=strsplit(formula,'~');
+nameList=util_strsplit(formula,'~');
 
 %Time = sortrows([data.(char(nameList(1)))', data.(char(nameList(2)))', data.Legend], 1);
 Time =sortrows(unique(data.(char(nameList(2)))'),1);
