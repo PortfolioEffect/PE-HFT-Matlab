@@ -2,8 +2,9 @@
   <img width="200" src="https://www.portfolioeffect.com/img/logo/portfolioeffect-logo-full-200-950.png" alt="PortfolioEffect">
 </a>
 
-# PortfolioEffect Quant - HFT Toolbox for MATLAB
-MATLAB toolbox package for high frequency trading (HFT) strategy backtests, intraday portfolio analysis and portfolio optimization.
+# PortfolioEffectHFT Toolbox for MATLAB
+MATLAB Toolbox/API to PortfolioEffect Quant service for high frequency trading (HFT) strategy backtests, intraday portfolio 
+analysis and portfolio optimization.
 
 ## About PortfolioEffect
 
