@@ -32,7 +32,7 @@
 % portfolioExample=portfolio_create('index','SPY','fromTime',dateStart ,'toTime',dateEnd );
 % portfolio_addPosition(portfolioExample,'AAPL',100);
 % portfolio_addPosition(portfolioExample,'GOOG',150);
-% util_plot2d(position_VaR(portfolioExample,'AAPL',0.05),'AAPL','Title','Value at Risk daily')+util_line2d(position_VaR(portfolioExample,'GOOG',0.05),'GOOG')+util_line2d(portfolio_VaR(portfolioExample,0.05),'Portfolio')
+% util_plot2d(position_VaR(portfolioExample,'AAPL',0.95),'AAPL','Title','Value at Risk daily')+util_line2d(position_VaR(portfolioExample,'GOOG',0.95),'GOOG')+util_line2d(portfolio_VaR(portfolioExample,0.95),'Portfolio')
 function r= util_line2d( data,legend)
 Data=data(:,2);
 Time=data(:,1);

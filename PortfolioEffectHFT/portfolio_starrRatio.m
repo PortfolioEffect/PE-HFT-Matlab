@@ -39,7 +39,7 @@
 % portfolio_addPosition(portfolioExample,'AAPL',300,'priceData',data_aapl);
 % portfolio_addPosition(portfolioExample,'SPY',150,'priceData',data_spy);
 % portfolio_settings(portfolioExample,'portfolioMetricsMode','price','windowLength','3600s');
-% util_plot2d(portfolio_starrRatio(portfolioExample,0.05),'Portfolio STARR Ratio ')
+% util_plot2d(portfolio_starrRatio(portfolioExample,0.95),'Portfolio STARR Ratio ')
 % 
 % dateStart = '2014-11-17 09:30:00';
 % dateEnd = '2014-11-19 16:00:00';
@@ -47,7 +47,7 @@
 % portfolio_addPosition(portfolioExample,'AAPL',100);
 % portfolio_addPosition(portfolioExample,'C',300); 
 % portfolio_addPosition(portfolioExample,'GOOG',150);
-% util_plot2d(portfolio_starrRatio(portfolioExample,0.05),'Portfolio STARR Ratio ')
+% util_plot2d(portfolio_starrRatio(portfolioExample,0.95),'Portfolio STARR Ratio ')
 function [portfolio_starrRatio] = portfolio_starrRatio(portfolio,confidenceInterval)
      portfolio_starrRatio=position_metric(portfolio,'metric','PORTFOLIO_STARR_RATIO','confidenceInterval',num2str(confidenceInterval));
 end

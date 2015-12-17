@@ -61,7 +61,7 @@ end
            
            
            disp(' ');
-           portfolioTemp.java.createCallGroup(int16(9));
+           portfolioTemp.java.createCallGroup(int16(7));
 
            portfolio_startBatch(portfolioTemp);
 %            for k = 1:length(symbols)
@@ -114,6 +114,7 @@ end
       end
       methods
      function plot(varargin)
+         global clientConnection
 if ~util_validateConnection()
     return;
 end
@@ -123,36 +124,35 @@ p=portfolio_create(portfolioTemp);
 setting=portfolio_getSettings(p);
 porfolioSet=portfolio_getSettings(p);
 
-portfolioIce=getJava(p);
-portfolioIce.createCallGroup(int32(3));
 tempSet=porfolioSet;
 if strcmp(tempSet.resultsSamplingInterval,'last')
     tempSet.resultsSamplingInterval='1s';
     portfolio_settings(p,tempSet);
 end
 symbols=portfolio_symbols(p);
- portfolioIce.createCallGroup(int16(2*length(symbols)+4));      
-           portfolioIce.startBatch();
+clientConnection.proggressBarOff();
+            p.java.startBatch();
                portfolio_variance(p);
                portfolio_expectedReturn(p);
                portfolio_value(p);
-           portfolioIce.finishBatch();
+            p.java.finishBatch();
            
            value=portfolio_value(p);
            expectedReturn=portfolio_expectedReturn(p);
             variance=portfolio_variance(p);
+clientConnection.proggressBarOn();
+ p.java.setParam('samplingInterval','last');
+% tempSet.resultsSamplingInterval='last';
+% portfolio_settings(p,tempSet);
 
-tempSet.resultsSamplingInterval='last';
-portfolio_settings(p,tempSet);
 
-
-  portfolioIce.startBatch();
+   p.java.startBatch();
            for k = 1:length(symbols)
                position_weight(p,symbols(k));
                position_profit(p,symbols(k));
            end
                portfolio_profit(p);
-    portfolioIce.finishBatch();
+     p.java.finishBatch();
     
                printMatrix=zeros(length(symbols), 2);
        j=1;

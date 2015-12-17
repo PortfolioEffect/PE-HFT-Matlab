@@ -35,13 +35,13 @@
 %
 % portfolio_startBatch(portfolioExample);
 %
-% portfolio_VaR(portfolioExample,0.05);
-% position_VaR(portfolioExample,'AAPL',0.05);
-% position_VaR(portfolioExample,'GOOG',0.05);
+% portfolio_VaR(portfolioExample,0.95);
+% position_VaR(portfolioExample,'AAPL',0.95);
+% position_VaR(portfolioExample,'GOOG',0.95);
 %
 % portfolio_endBatch(portfolioExample);
 %
-% util_plot2d(position_VaR(portfolioExample,'AAPL',0.05),'AAPL','Title','Value at Risk daily')+util_line2d(position_VaR(portfolioExample,'GOOG',0.05),'GOOG')+        util_line2d(portfolio_VaR(portfolioExample,0.05),'Portfolio')
+% util_plot2d(position_VaR(portfolioExample,'AAPL',0.95),'AAPL','Title','Value at Risk daily')+util_line2d(position_VaR(portfolioExample,'GOOG',0.95),'GOOG')+        util_line2d(portfolio_VaR(portfolioExample,0.05),'Portfolio')
 function [] = portfolio_endBatch(portfolio)
  portfolioIce=getJava(portfolio);
      result=portfolioIce.finishBatch();

@@ -1,0 +1,35 @@
+PortfolioEffectHFT v1.4 (Release date: 2015-12-17)
+==============
+
+Changes:
+
+* Improvements in estimates precision 
+* Fixed a number of bugs that occurred only under high load
+* Improvements in server-side data caching 
+* Output "NaN" for missing values, computational errors, warm-up periods and possible artifacts
+
+
+PortfolioEffectHFT v1.3 (Release date: 2015-11-08)
+==============
+
+Changes:
+
+* Added portfolio_availableSymbols() to list all available server-side instruments
+* Added "fractalPriceModel" to portfolio_settings() method to turn on/off fractal price model.
+* Confidence interval parameter changed meaning from tail probability to 1 - tail probability (e.g.from 0.05 to 0.95)
+* Default value of "driftTerm" in portfolio_settings() is now "FALSE"
+* Fixed errors in portfolio_startBatch() and portfolio_endBatch() - both methods are now working
+    
+    
+PortfolioEffectHFT v1.2 (Release date: 2015-09-29)
+==============
+
+First commit.
+
+New functionality:
+
+* Auto-calibrating model pipeline for market microstructure noise, risk factors, price jumps/outliers, tail risk (high-order moments), price fractality (long memory) that was built to give tick-resolution analytics.
+* Over 40+ portfolio and position-level metrics of intraday risk and performance from modern and post-modern portfolio theory.
+* Single-period constraint portfolio optimization (classic Markowitz and extensions for tail risk) with scalar, vector-based and user-defined functional constraints
+* Multi-period constraint portfolio optimization that accounts for previous portfolio rebalancing (trading strategy optimization).
+* Transactional costs were also implemented in this release. 

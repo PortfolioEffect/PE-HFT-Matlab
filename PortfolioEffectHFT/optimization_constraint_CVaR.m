@@ -41,7 +41,7 @@
 % portfolio_addPosition(portfolio,'AAPL',100);
 % portfolio_addPosition(portfolio,'C',300) ;
 % optimizer=optimization_goal(portfolio,'goal','Return','direction','maximize');
-% optimizer=optimization_constraint_CVaR(optimizer,'>=',-2000,0.05);
+% optimizer=optimization_constraint_CVaR(optimizer,'>=',0.1,0.95);
 % optimization_run(optimizer)
 function [optimizer] = optimization_constraint_CVaR(optimizer,constraintType,constraintValue,confidenceInterval)
 if ~util_validateConnection()

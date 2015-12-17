@@ -41,7 +41,7 @@
 % portfolio_addPosition(portfolio,'AAPL',100);
 % portfolio_addPosition(portfolio,'C',300) ;
 % optimizer=optimization_goal(portfolio,'goal','Return','direction','maximize');
-% optimizer=optimization_constraint_starrRatio(optimizer,'>=',0,0.05);
+% optimizer=optimization_constraint_starrRatio(optimizer,'>=',0,0.95);
 % optimization_run(optimizer)
 function [optimizer] =  optimization_constraint_starrRatio(optimizer,constraintType,constraintValue,confidenceInterval)
 if ~util_validateConnection()

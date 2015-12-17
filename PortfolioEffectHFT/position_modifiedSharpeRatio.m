@@ -41,7 +41,7 @@
 % portfolio_addPosition(portfolioExample,'AAPL',300,'priceData',data_aapl);
 % portfolio_addPosition(portfolioExample,'SPY',150,'priceData',data_spy);
 % portfolio_settings(portfolioExample,'portfolioMetricsMode','price','windowLength','3600s');
-% util_plot2d(position_modifiedSharpeRatio(portfolioExample,'GOOG',0.05),'Position Modified Sharpe Ratio GOOG')
+% util_plot2d(position_modifiedSharpeRatio(portfolioExample,'GOOG',0.95),'Position Modified Sharpe Ratio GOOG')
 % 
 % dateStart = '2014-11-17 09:30:00';
 % dateEnd = '2014-11-19 16:00:00';
@@ -49,7 +49,7 @@
 % portfolio_addPosition(portfolioExample,'AAPL',100);
 % portfolio_addPosition(portfolioExample,'C',300); 
 % portfolio_addPosition(portfolioExample,'GOOG',150);
-% util_plot2d(position_modifiedSharpeRatio(portfolioExample,'AAPL',0.05),'Position Modified Sharpe Ratio AAPL')
+% util_plot2d(position_modifiedSharpeRatio(portfolioExample,'AAPL',0.95),'Position Modified Sharpe Ratio AAPL')
 function [position_modifiedSharpeRatio] = position_modifiedSharpeRatio(portfolio,symbol,confidenceInterval)
      position_modifiedSharpeRatio=position_metric(portfolio,'metric','POSITION_SHARPE_RATIO_MOD','position',symbol,'confidenceInterval',num2str(confidenceInterval));
 end

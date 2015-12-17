@@ -42,7 +42,7 @@
 % portfolio_addPosition(portfolioExample,'AAPL',300,'priceData',data_aapl);
 % portfolio_addPosition(portfolioExample,'SPY',150,'priceData',data_spy);
 % portfolio_settings(portfolioExample,'portfolioMetricsMode','price','windowLength','3600s');
-% util_plot2d(portfolio_rachevRatio(portfolioExample,0.05,0.05),'Portfolio Rachev Ratio ')
+% util_plot2d(portfolio_rachevRatio(portfolioExample,0.95,0.95),'Portfolio Rachev Ratio ')
 % 
 % dateStart = '2014-11-17 09:30:00';
 % dateEnd = '2014-11-19 16:00:00';
@@ -50,7 +50,7 @@
 % portfolio_addPosition(portfolioExample,'AAPL',100);
 % portfolio_addPosition(portfolioExample,'C',300); 
 % portfolio_addPosition(portfolioExample,'GOOG',150);
-% util_plot2d(portfolio_rachevRatio(portfolioExample,0.05,0.05),'Portfolio Rachev Ratio ')
+% util_plot2d(portfolio_rachevRatio(portfolioExample,0.95,0.95),'Portfolio Rachev Ratio ')
 function [portfolio_rachevRatio] = portfolio_rachevRatio(portfolio,confidenceIntervalAlpha,confidenceIntervalBeta)
      portfolio_rachevRatio=position_metric(portfolio,'metric','PORTFOLIO_RACHEV_RATIO','confidenceIntervalAlpha',num2str(confidenceIntervalAlpha),'confidenceIntervalBeta',num2str(confidenceIntervalBeta));
 end

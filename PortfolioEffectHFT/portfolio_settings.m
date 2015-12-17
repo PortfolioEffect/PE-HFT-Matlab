@@ -29,6 +29,9 @@
 % noiseModel
 %     Used to enable mirostructure noise filtering of distribution returns.  Defaults to true, which implies that microstructure effects are modeled and resulting HF noise is removed from metric calculations. 
 % 
+% fractalPriceModel
+%     Used to enable mono-fractal price assumptions (fGBM) when time scaling return moments.  Defaults to TRUE, which implies that computed Hurst exponent is used to scale return moments. When FALSE, price is assumed to follow regular GBM with Hurst exponent = 0.5.
+% 
 % densityModel
 %     Used to select density approximation model of return distribution. Available models are: "GLD" - Generalized Lambda Distribution, "CORNER_FISHER" - Corner-Fisher approximation, "NORMAL" - Gaussian distribution. Defaults to "GLD", which would fit a very broad range of distribution shapes.
 % 
@@ -36,7 +39,7 @@
 %    Used to select factor model for computing portfolio metrics. Available models are: "sim" - portfolio metrics are computed using the Single Index Model, "direct" - portfolio metrics are computed using portfolio value itself. Defaults to "sim", which implies that the Single Index Model is used to compute portfolio metrics.
 %
 % driftTerm
-%    Used to enable drift term (expected return) when computing probability density approximation and related metrics (e.g. CVaR, Omega Ratio, etc.). Defaults to TRUE, which implies that distribution is centered around expected return.
+%    Used to enable drift term (expected return) when computing probability density approximation and related metrics (e.g. CVaR, Omega Ratio, etc.). Defaults to FALSE, which implies that distribution is centered around zero return.
 %  
 % resultsSamplingInterval
 %     Interval to be used for sampling computed results before returning them to the caller. Available interval values are: "Xs" - seconds, "Xm" - minutes, "Xh" - hours, "Xd" - trading days (6.5 hours in a trading day), "Xw" - weeks (5 trading days in 1 week), "Xmo" - month (21 trading day in 1 month), "Xy" - years (256 trading days in 1 year), "last" - latest value in a series is returned, "none" - no sampling. Large sampling interval would produce smaller vector of results and would require less time spent on data transfer. Default value of "1s" indicates that data is returned for every second during trading hours.
@@ -104,7 +107,8 @@ p = inputParser;
    
    defaultFactorModel= 'sim';
    defaultDensityModel= 'GLD';
-   defaultDriftTerm = 'true';
+   defaultDriftTerm = 'false';
+   defaultFractalPriceModel = 'true';
    defaultResultsSamplingInterval= '1s';
    defaultInputSamplingInterval= 'all';
    defaultTimeScale= '1d';
@@ -120,6 +124,7 @@ p = inputParser;
    addOptional(p,'shortSalesMode',defaultShortSalesMode,@ischar);
    addOptional(p,'jumpsModel',defaultJumpsModel,@ischar);
    addOptional(p,'noiseModel',defaultNoiseModel,@ischar);
+   addOptional(p,'fractalPriceModel',defaultFractalPriceModel,@ischar);
    addOptional(p,'factorModel',defaultFactorModel,@ischar);
       addOptional(p,'densityModel',defaultDensityModel,@ischar);
          addOptional(p,'driftTerm',defaultDriftTerm,@ischar);
@@ -139,6 +144,7 @@ portfolio.java.setParam('isHoldingPeriodEnabled',p.Results.holdingPeriodsOnly);
 portfolio.java.setParam('shortSalesMode',p.Results.shortSalesMode);
 portfolio.java.setParam('jumpsModel',p.Results.jumpsModel);
 portfolio.java.setParam('isNoiseModelEnabled',p.Results.noiseModel);
+portfolio.java.setParam('isFractalPriceModelEnabled',p.Results.fractalPriceModel);
 portfolio.java.setParam('factorModel',p.Results.factorModel);
 portfolio.java.setParam('samplingInterval',p.Results.resultsSamplingInterval);
 portfolio.java.setParam('priceSamplingInterval',p.Results.inputSamplingInterval);

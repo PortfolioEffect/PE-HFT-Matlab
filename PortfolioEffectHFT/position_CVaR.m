@@ -42,7 +42,7 @@
 % portfolio_addPosition(portfolioExample,'AAPL',300,'priceData',data_aapl);
 % portfolio_addPosition(portfolioExample,'SPY',150,'priceData',data_spy);
 % portfolio_settings(portfolioExample,'portfolioMetricsMode','price','windowLength','3600s');
-% util_plot2d(position_CVaR(portfolioExample,'GOOG',0.05),'Position Conditional Value-at-Risk GOOG')
+% util_plot2d(position_CVaR(portfolioExample,'GOOG',0.95),'Position Conditional Value-at-Risk GOOG')
 % 
 % dateStart = '2014-11-17 09:30:00';
 % dateEnd = '2014-11-19 16:00:00';
@@ -50,7 +50,7 @@
 % portfolio_addPosition(portfolioExample,'AAPL',100);
 % portfolio_addPosition(portfolioExample,'C',300); 
 % portfolio_addPosition(portfolioExample,'GOOG',150);
-% util_plot2d(position_CVaR(portfolioExample,'AAPL',0.05),'Position Conditional Value-at-Risk AAPL')
+% util_plot2d(position_CVaR(portfolioExample,'AAPL',0.95),'Position Conditional Value-at-Risk AAPL')
 function [position_CVaR] = position_CVaR(portfolio,symbol,confidenceInterval)
      position_CVaR=position_metric(portfolio,'metric','POSITION_CVAR','position',symbol,'confidenceInterval',num2str(confidenceInterval));
 end

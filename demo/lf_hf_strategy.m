@@ -55,8 +55,8 @@ util_line2d(portfolio_variance(lowFrequencyportfolio),'LF Portfolio')
 % Part 4 - Trading strategy Value-at-Risk
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-util_plot2d(portfolio_VaR(highFrequencyPortfolio,0.05),'HF Portfolio','Title','Value at Risk in %, daily (95% c.i.)')+...
-util_line2d(portfolio_VaR(lowFrequencyportfolio,0.05),'LF Portfolio')
+util_plot2d(portfolio_VaR(highFrequencyPortfolio,0.95),'HF Portfolio','Title','Value at Risk in %, daily (95% c.i.)')+...
+util_line2d(portfolio_VaR(lowFrequencyportfolio,0.95),'LF Portfolio')
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Part 5 - Trading strategy Sharpe ratio

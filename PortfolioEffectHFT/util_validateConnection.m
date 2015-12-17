@@ -2,8 +2,8 @@ function [result] = util_validateConnection()
 global clientConnection
 result=true;
 if ~exist(fullfile(prefdir,'matICE9Remote.mat'), 'file')
-    msgbox('Function util_setCredentials() should be called before.To retrieve your account credentials, please log in to your account or register for a free account at https://www.portfolioeffect.com/registration.');
-    error('Function util_setCredentials() should be called before.To retrieve your account credentials, please log in to your account or register for a free account at https://www.portfolioeffect.com/registration.')
+    msgbox('Function util_setCredentials() should be called before. To retrieve your account credentials, please log in to your account or register for a free account at https://www.portfolioeffect.com/registration.');
+    error('Function util_setCredentials() should be called before. To retrieve your account credentials, please log in to your account or register for a free account at https://www.portfolioeffect.com/registration.')
 end
 if isempty(clientConnection)
     try

@@ -49,23 +49,23 @@ optimizer.java.setForecastPortfolioWindow(optimizer.forecastPortfolioWindow);
      for forecastedValueList = optimizer.forecastedValueLists 
     switch forecastedValueList.metricType
    case 'ExpReturn'
-                result=forecastedValues.setSymbolForecastedExpReturn(forecastedValueList.symbol,double(forecastedValueList.value),int64(DateToPOSIXTime(forecastedValueList.time)));
+                result=forecastedValues.setSymbolForecastedExpReturn(forecastedValueList.symbol,double(forecastedValueList.value),int64(util_dateToPOSIXTime(forecastedValueList.time)));
   case 'Beta'
-           result=forecastedValues.setSymbolForecastedBeta(forecastedValueList.symbol,double(forecastedValueList.value),int64(DateToPOSIXTime(forecastedValueList.time)));
+           result=forecastedValues.setSymbolForecastedBeta(forecastedValueList.symbol,double(forecastedValueList.value),int64(util_dateToPOSIXTime(forecastedValueList.time)));
   case 'Variance'
-            result=forecastedValues.setSymbolForecastedVariance(forecastedValueList.symbol,double(forecastedValueList.value),int64(DateToPOSIXTime(forecastedValueList.time)));
+            result=forecastedValues.setSymbolForecastedVariance(forecastedValueList.symbol,double(forecastedValueList.value),int64(util_dateToPOSIXTime(forecastedValueList.time)));
   case 'Skewness'
-            result=forecastedValues.setSymbolForecastedSkewness(forecastedValueList.symbol,double(forecastedValueList.value),int64(DateToPOSIXTime(forecastedValueList.time)));
+            result=forecastedValues.setSymbolForecastedSkewness(forecastedValueList.symbol,double(forecastedValueList.value),int64(util_dateToPOSIXTime(forecastedValueList.time)));
   case 'Kurtosis'
-            result=forecastedValues.setSymbolForecastedKurtosis(forecastedValueList.symbol,double(forecastedValueList.value),int64(DateToPOSIXTime(forecastedValueList.time)));
+            result=forecastedValues.setSymbolForecastedKurtosis(forecastedValueList.symbol,double(forecastedValueList.value),int64(util_dateToPOSIXTime(forecastedValueList.time)));
   case 'Cumulant1'
-            result=forecastedValues.setSymbolForecastedCumulant1(forecastedValueList.symbol,double(forecastedValueList.value),int64(DateToPOSIXTime(forecastedValueList.time)));
+            result=forecastedValues.setSymbolForecastedCumulant1(forecastedValueList.symbol,double(forecastedValueList.value),int64(util_dateToPOSIXTime(forecastedValueList.time)));
   case 'Cumulant2'
-            result=forecastedValues.setSymbolForecastedCumulant2(forecastedValueList.symbol,double(forecastedValueList.value),int64(DateToPOSIXTime(forecastedValueList.time)));
+            result=forecastedValues.setSymbolForecastedCumulant2(forecastedValueList.symbol,double(forecastedValueList.value),int64(util_dateToPOSIXTime(forecastedValueList.time)));
   case 'Cumulant3'
-            result=forecastedValues.setSymbolForecastedCumulant3(forecastedValueList.symbol,double(forecastedValueList.value),int64(DateToPOSIXTime(forecastedValueList.time)));
+            result=forecastedValues.setSymbolForecastedCumulant3(forecastedValueList.symbol,double(forecastedValueList.value),int64(util_dateToPOSIXTime(forecastedValueList.time)));
   case 'Cumulant4'
-            result=forecastedValues.setSymbolForecastedCumulant4(forecastedValueList.symbol,double(forecastedValueList.value),int64(DateToPOSIXTime(forecastedValueList.time)));
+            result=forecastedValues.setSymbolForecastedCumulant4(forecastedValueList.symbol,double(forecastedValueList.value),int64(util_dateToPOSIXTime(forecastedValueList.time)));
     end
         if result.hasError()
             disp(result.getErrorMessage())

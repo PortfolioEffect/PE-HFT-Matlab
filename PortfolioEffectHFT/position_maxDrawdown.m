@@ -48,5 +48,5 @@
 % portfolio_addPosition(portfolioExample,'GOOG',150);
 % util_plot2d(position_maxDrawdown(portfolioExample,'AAPL'),'Position Maximum Drawdown AAPL')
 function [position_maxDrawdown] = position_maxDrawdown(portfolio,symbol)
-     position_maxDrawdown=position_metric(portfolio,'metric','POSITION_MAX_DRAW_DOWN','position',symbol);
+     position_maxDrawdown=position_metric(portfolio,'metric','POSITION_MAX_DRAWDOWN','position',symbol);
 end

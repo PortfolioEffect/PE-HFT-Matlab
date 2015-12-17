@@ -93,7 +93,7 @@ if ~util_validateConnection()
 end
 optimiz=optimizer();
 p = inputParser;
-defaultConfidenceInterval = 0.05;
+defaultConfidenceInterval = 0.95;
 defaultGoal = 'EquiWeight';
 defaultDirection = 'minimize';
 expectedGoal = {'EquiWeight','ContraintsOnly','Variance','VaR','CVaR','ExpectedReturn','Return','SharpeRatio','ModifiedSharpeRatio','StarrRatio'};

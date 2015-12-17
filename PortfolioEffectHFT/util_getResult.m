@@ -19,6 +19,14 @@ function [ result ] = util_getResult( data )
        result=[result,int16(data.getIntArray(dataName))];       
    case 'LONG_VECTOR'
        result=[result,double(data.getLongArray(dataName))];       
+   case 'STRING_VECTOR'
+ result=dataset(result,char(data.getStringArray(dataName)));    
+        if(size(result)==0)
+set(result,'VarNames',{dataName})
+       else
+set(result,'VarNames',{namesTemp,dataName})    
+end
+       
    case 'PORTFOLIO'
        result=data.getPortfolio(dataName);       
          end
