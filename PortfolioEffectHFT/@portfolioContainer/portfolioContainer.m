@@ -53,6 +53,7 @@ end
            disp(['Portfolio factor model ',char(setting.factorModel)]);
            disp(['Density model ',char(setting.densityModel)]);
            disp(['Drift term enabled ',char(setting.driftTerm)]);
+           disp(['Results NA filter  ',char(setting.resultsNAFilter)]);
            disp(['Results sampling interval ',char(setting.resultsSamplingInterval)]);
            disp(['Input sampling interval ',char(setting.inputSamplingInterval)]);
            disp(['Transaction cost per share ',char(setting.txnCostPerShare)]);
@@ -119,6 +120,10 @@ if ~util_validateConnection()
     return;
 end
 portfolioTemp=varargin{1};
+bw=false;
+if nargin==2
+bw=varargin{2};
+end
 
 p=portfolio_create(portfolioTemp);
 setting=portfolio_getSettings(p);
@@ -169,20 +174,22 @@ clientConnection.proggressBarOn();
            r1=sortrows(r1,2);
            figure
 subplot(4,2,[1,2]);
-util_plot2d(value,'Portfolio Value ($)','Title','Portfolio Value')
+util_plot2d(value,'Portfolio Value ($)','Title','Portfolio Value','bw',bw)
      subplot(4,2,[5,6]);
-util_plot2d(expectedReturn,'Portfolio Expected Return','Title','Portfolio Expected Return')
+util_plot2d(expectedReturn,'Portfolio Expected Return','Title','Portfolio Expected Return','bw',bw)
 hline = refline([0 0]);
 set(hline,'Color', 'r'); 
 
        subplot(4,2,[7,8]);
-       util_plot2d(variance,'Portfolio Variance','Title','Portfolio Variance')
+       util_plot2d(variance,'Portfolio Variance','Title','Portfolio Variance','bw',bw)
 
 subplot(4,2,3);
 barh(cell2mat(r1(:,2)),'FaceColor',[0 74/255 97/255],'EdgeColor',[0 74/255 97/255]); % groups by row
 set(gca,'YTickLabel',r1(:,1));
+if bw==false
 set(gca,'Color',[213/255 228/255 235/255]);
 set(gcf,'Color',[213/255 228/255 235/255]);
+end
 set(gca,'FontSize',12);
 grid on
 title('Positon Weight (%)','FontSize',15,'FontWeight','bold');
@@ -192,8 +199,10 @@ title('Positon Weight (%)','FontSize',15,'FontWeight','bold');
                   subplot(4,2,4);
 barh(cell2mat(r1(:,3)),'FaceColor',[0 163/255 220/255],'EdgeColor',[0 163/255 220/255]); % groups by row
 set(gca,'YTickLabel',r1(:,1));
+if bw==false
 set(gca,'Color',[213/255 228/255 235/255]);
 set(gcf,'Color',[213/255 228/255 235/255]);
+end
 set(gca,'FontSize',12);
 grid on
 title('Positon Profit ($)','FontSize',15,'FontWeight','bold');

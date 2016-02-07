@@ -46,23 +46,19 @@
 % portfolio_addPosition(portfolioExample,'GOOG',150);
 % position_correlationMatrix(portfolioExample)
 function [position_correlationMatrix] = position_correlationMatrix(portfolio)
-change=false;
-setting=portfolio_getSettings(portfolio);
-if ~strcmp(setting.resultsSamplingInterval,'last')
-settingTemp=setting;
-settingTemp.resultsSamplingInterval='last';
-portfolio_settings(portfolio,settingTemp);
-change=true;
-end
-portfolioIce=getJava(portfolio);
-symbols=portfolio_symbols(portfolio);
+portfolioTemp=portfolio_create(portfolio);
+setting=portfolio_getSettings(portfolioTemp);
+setting.resultsSamplingInterval='last';
+portfolio_settings(portfolioTemp,setting);
+portfolioIce=getJava(portfolioTemp);
+symbols=portfolio_symbols(portfolioTemp);
 n=length(symbols);
 printMatrix=ones(n,n);
 
            portfolioIce.startBatch();
 for i = 2:n
     for j = 1:(i-1)
-        position_metric(portfolio,'metric','POSITION_CORRELATION','positionA','AAPL','positionB','GOOG');
+        position_metric(portfolioTemp,'metric','POSITION_CORRELATION','positionA',symbols(i),'positionB',symbols(j));
     end
 end
            portfolioIce.finishBatch();
@@ -70,13 +66,10 @@ end
 
 for i = 2:n
     for j = 1:(i-1)
-        result=position_metric(portfolio,'metric','POSITION_CORRELATION','positionA',symbols(i),'positionB',symbols(j));
+        result=position_metric(portfolioTemp,'metric','POSITION_CORRELATION','positionA',symbols(i),'positionB',symbols(j));
         printMatrix(i,j)=result(2);
         printMatrix(j,i)=printMatrix(i,j);
     end
-end
-if change
-   portfolio_settings(portfolio,setting); 
 end
 position_correlationMatrix=[{'---'},symbols';symbols,num2cell(printMatrix)];
 end

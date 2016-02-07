@@ -7,24 +7,26 @@ timeStart =  '2014-10-02 09:30:00';
 timeEnd = '2014-10-03 16:00:00';
 
 portfolio=portfolio_create('index','SPY', 'fromTime',timeStart, 'toTime',timeEnd);
-portfolio_settings(portfolio,'portfolioMetricsMode','price','jumpsModel','all');
+portfolio_settings(portfolio,'portfolioMetricsMode','price','jumpsModel','all','resultsNAFilter','false');
 portfolio_addPosition(portfolio,'AAPL',100);
 portfolio_addPosition(portfolio,'GOOG',100);
 portfolio_addPosition(portfolio,'SPY',100);
 
 figure('position',[800 200 1000 700])
 util_plot2d(position_jensensAlpha(portfolio,'AAPL'),'AAPL','Title','Jensens Alpha')+util_line2d(position_jensensAlpha(portfolio,'GOOG'), 'GOOG')
+
 % compute optimal weights according to the Treynor-Black model
 paren = @(x, varargin) x(varargin{:});
 alpha = [paren(position_jensensAlpha(portfolio,'AAPL'),:,2),paren(position_jensensAlpha(portfolio,'GOOG'),:,2)];
 timeUTC =paren(position_jensensAlpha(portfolio,'AAPL'),:,1);
-variance= bsxfun(@minus,[paren(position_variance(portfolio,'AAPL'),:,2),paren(position_variance(portfolio,'GOOG'),:,2)],(paren(position_beta(portfolio,'GOOG'),:,2).^2).*paren(position_variance(portfolio,'SPY'),:,2));
+variance= [paren(position_variance(portfolio,'AAPL'),:,2),paren(position_variance(portfolio,'GOOG'),:,2)];
 
 treynorBlack=alpha./variance;
 optimWeigth=bsxfun(@rdivide,treynorBlack,sum(abs(treynorBlack),2));
 
 % plot optimal position weights
 util_plot2d([timeUTC, optimWeigth(:,1)],'AAPL','Title','Optimal Weight')+util_line2d([timeUTC, optimWeigth(:,2)], 'GOOG')
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Part 2- Compare two portfolios of equal value
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

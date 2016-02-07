@@ -68,7 +68,7 @@ portfolioTemp=portfolio_create(portfolio);
 	result=struct('pdf',resultTemp(2:(nPoints+1)),'value',resultTemp((nPoints+2):(2*nPoints+1)));
     
 	if addNormalDensity
-        portfolioTemp.java.setParam('densityModel','NORMAL');
+        portfolioTemp.java.setParam('densityApproxModel','NORMAL');
 		z=portfolioTemp.java.getPDF(double(pValueLeft),double(pValueRight),int16(nPoints),char(symbol));
 		resultTemp=util_getResult(z);
         

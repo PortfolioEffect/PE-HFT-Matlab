@@ -35,7 +35,6 @@ bar(y)
 set(gca,'xticklabel',{'High Frequency Strategy' 'Low Frequency Strategy'})
 util_plotTheme('Title','Number of transaction')
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Part 2 - Holding intervals visualization
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -65,10 +64,12 @@ util_plot2d([printTime,lowFrequencyStrategy],'LF Quantity','Title','Low Frequenc
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 close
 figure('position',[800 200 1000 700])
+varianceHF=portfolio_variance(highFrequencyPortfolioWithoutTransactionCosts);
+varianceLF=portfolio_variance(highFrequencyPortfolioWithoutTransactionCosts);
 util_plot2d(portfolio_variance(highFrequencyPortfolioWithTransactionCosts),'HF With Transaction Costs','Title','Variance, daily')+...
-    util_line2d(portfolio_variance(highFrequencyPortfolioWithoutTransactionCosts)+[zeros(n,1)  ones(n,1)/500000],'HF Without Transaction Costs')+...
+    util_line2d(varianceHF+[zeros(length(varianceHF),1)  ones(length(varianceHF),1)/500000],'HF Without Transaction Costs')+...
     util_line2d(portfolio_variance(lowFrequencyPortfolioWithTransactionCosts),'LF With Transaction Costs')+...
-    util_line2d(portfolio_variance(lowFrequencyPortfolioWithoutTransactionCosts)+[zeros(n,1)  ones(n,1)/500000],'LF Without Transaction Costs')
+    util_line2d(varianceLF+[zeros(length(varianceLF),1)  ones(length(varianceLF),1)/500000],'LF Without Transaction Costs')
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Part 4 - Trading strategy expected return
@@ -82,8 +83,9 @@ util_plot2d(portfolio_expectedReturn(highFrequencyPortfolioWithTransactionCosts)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Part 5 - Trading strategy Transactional Costs
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+txnLF=portfolio_txnCosts(lowFrequencyPortfolioWithoutTransactionCosts);
 util_plot2d(portfolio_txnCosts(highFrequencyPortfolioWithTransactionCosts),'HF With Transaction Costs','Title','Transactional Costs')+...
     util_line2d(portfolio_txnCosts(highFrequencyPortfolioWithoutTransactionCosts),'HF Without Transaction Costs')+...
     util_line2d(portfolio_txnCosts(lowFrequencyPortfolioWithTransactionCosts),'LF With Transaction Costs')+...
-    util_line2d(portfolio_txnCosts(lowFrequencyPortfolioWithoutTransactionCosts)+[zeros(n,1)  ones(n,1)*10],'LF Without Transaction Costs')
+    util_line2d(txnLF+[zeros(length(txnLF),1)  ones(length(txnLF),1)*10],'LF Without Transaction Costs')
+

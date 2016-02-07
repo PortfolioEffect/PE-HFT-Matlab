@@ -1,3 +1,12 @@
+PortfolioEffectHFT v1.5 (Release date: 2016-02-01)
+==============
+
+Changes:
+
+* Added "bw" (black and white) output option to util_summary()
+* Added "resultsNAFilter" to portfolio_settings()
+
+
 PortfolioEffectHFT v1.4 (Release date: 2015-12-17)
 ==============
 

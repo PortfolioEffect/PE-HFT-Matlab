@@ -54,7 +54,7 @@ result=position_metric(portfolio,'metric',strcat('PORTFOLIO_MOMENT',num2str(i)))
         if isempty(res)
             res=result;
         else
-            res=[res,result(:,2)];
+            res=[res(ismember(res(:,1), result(:,1)),:),result(ismember(result(:,1), res(:,1)),2)];
         end
 end
      portfolio_moment=res;
