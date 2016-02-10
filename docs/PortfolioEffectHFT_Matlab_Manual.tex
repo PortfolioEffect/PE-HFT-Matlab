@@ -116,10 +116,10 @@ PortfolioEffectHFT toolbox for MATLAB is provided as a zip archive for all
 types of operating systems and as a self-install executable file for Windows. 
 
 \section{Zip Archive (All OS)}
-Download zip archive with a toolbox from PortfolioEffect downloads section 
-\href{https://www.portfolioeffect.com/docs/platform/quant/downloads}{downloads}
-or MATLAB Central 
-\href{http://www.mathworks.com/matlabcentral/fileexchange}{File Exchange}.
+Download zip archive with a toolbox from PortfolioEffect  
+\href{https://www.portfolioeffect.com/docs/platform/quant/tools/matlab}{downloads}
+section or MATLAB Central 
+\href{http://www.mathworks.com/matlabcentral/fileexchange/53194-portfolioeffecthft-high-frequency-trading-toolbox}{File Exchange}.
 
 Once downloaded, unpack archive into the folder and add the 
 PortfolioEffectHFT folder to MATLAB's path using ``Set Path'' menu. 
@@ -143,12 +143,13 @@ Setup complete! Restart Matlab session now.
 Restart MATLAB to complete installation.
 
 \section{Install Wizard (Windows)}
-Download self-install executable for Windows from PortfolioEfect downloads
-section \href{https://www.portfolioeffect.com/docs/platform/quant/downloads}{downloads}.
+Download self-install executable for Windows from PortfolioEffect 
+\href{https://www.portfolioeffect.com/docs/platform/quant/tools/matlab}{downloads}
+section.
 Follow the installation instructions. Once the wizard completes, add the 
 PortfolioEffectHFT folder to MATLAB's path using ``Set Path''
 menu.
-The PortfolioEffectHFT toolbox is now fully configured.
+The PortfolioEffectHFT toolbox is now fully configured. 
 
 \chapter{Account Credentials}
 All portfolio computations are performed on PortfolioEffect cloud servers.
@@ -180,7 +181,7 @@ You are now ready to call PortfolioEffect methods.
 \section{User Data}
 Users may supply their own historical datasets for index and position entries. 
 This external data could be one a OHLC bar column element (e.g. 1-second close prices) or a vector of actual transaction prices that contains non-equidistant data points. 
-You might want to pre-pend at least N =(4 x windowLength) data points to the
+You might want to prepend at least N =(4 x windowLength) data points to the
 beginning of the interval of interest which would be used for initial calibration of portfolio metrics.
 \subsection{Create Portfolio} 
 Method
@@ -362,7 +363,7 @@ Defaults to "lintner", which implies that the sum of absolute weights is used to
 
 \section{Data Sampling}
 These settings regulate how results of portfolio computations are returned. 
-Depending on your usage scenario, some of them might bring significantly imporvement to speed of your portfolio computations
+Depending on your usage scenario, some of them might bring significantly improvement to speed of your portfolio computations
 \subsection{Results Sampling Interval}
 Interval to be used for sampling computed results before returning them to the caller. 
 Available interval values are: 
@@ -491,9 +492,9 @@ util_line2d(variance_1d, '1d')
 \end{lstlisting}
 
 \subsection{Microstructure Noise Model}
-Enables market mirostructure noise model of distribution returns.\\
-Defaults to TRUE, which means that microstructure effects are modeled and resulting HF noise is removed from metric caluclations. 
-When FALSE, HF microstructure noise is not separated from asset returns, which at high trading frequences could yield noise-contaminated results.
+Enables market microstructure noise model of distribution returns.\\
+Defaults to TRUE, which means that microstructure effects are modeled and resulting HF noise is removed from metric calculations. 
+When FALSE, HF microstructure noise is not separated from asset returns, which at high trading frequencies could yield noise-contaminated results.
 
 \begin{lstlisting}
 portfolio=portfolio_create('fromTime','2014-10-01 09:30:00','toTime','2014-10-02 16:00:00');
@@ -611,7 +612,8 @@ util_line2d(CVaR_driftTerm_FALSE, 'direct')
 
 \section{Transactional Costs}
 These settings provide a framework for adding variable and fixed transactional costs into return, expected return and profit calculations.
-All metrics based on expected return like Sharpe Ratio, VaR (with drift term enabled) would reflect transactional costsin their computations.
+All metrics based on expected return like Sharpe Ratio, VaR (with drift term
+enabled) would reflect transactional costs in their computations.
 \subsection{Cost Per Share}
 Amount of transaction costs per share. Default value is 0.
 \begin{lstlisting}
@@ -677,7 +679,7 @@ Optimization algorithm requires a single maximization/minimization goal to be se
 method that operates on a portfolio (see
 \href{https://www.portfolioeffect.com/docs/platform/quant/manuals/portfolio-construction}{portfolio
 construction}).
-Returned optimizer object could be used to add optional optimization costraints and then passed to the 
+Returned optimizer object could be used to add optional optimization constraints and then passed to the 
 \href{https://www.portfolioeffect.com/docs/platform/quant/functions/optimization-functions/optimization-run}{optimization\_run}
 method to launch portfolio optimization.
 \par
@@ -727,7 +729,7 @@ Portfolio positions are returned with equal weights
 
 \subsection{Adding Constraints}
 Optimization constraints cover both metric-based and weight-based
-constraints.Metric-based constraints limit portfolio-level metrics to a certain
+constraints. Metric-based constraints limit portfolio-level metrics to a certain
 range of values. For example, zero beta constraint would produce market-neutral optimal portfolio.
 Weight-based constraints operate on optimal position weights or sum of weights to 
 give control over position concentration risks or short-sales assumptions.
