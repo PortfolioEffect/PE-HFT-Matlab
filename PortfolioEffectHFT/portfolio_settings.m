@@ -96,68 +96,48 @@ if ~util_validateConnection()
     return;
 end
 if isstruct(varargin{1})
-    p=struct('Results',varargin{1});
+    p=varargin{1};
 else
-    p = inputParser;
-    defaultPortfolioMetricsMode = 'portfolio';
-    
-    defaultWindowLength = '1d';
-    defaultHoldingPeriodsOnly = 'false';
-    defaultShortSalesMode = 'lintner';
-    
-    defaultJumpsModel = 'moments';
-    defaultNoiseModel = 'true';
-    
-    defaultFactorModel= 'sim';
-    defaultDensityModel= 'GLD';
-    defaultDriftTerm = 'false';
-    defaultFractalPriceModel = 'true';
-    defaultResultsNAFilter='true';
-    defaultResultsSamplingInterval= '1s';
-    defaultInputSamplingInterval= '1s';
-    defaultTimeScale= '1d';
-    defaultTxnCostPerShare= 0;
-    defaultTxnCostFixed= 0;
-    
-    expectedPortfolioMetricsMode = {'portfolio','price'};
-    
-    addRequired(p,'portfolio');
-    addOptional(p,'portfolioMetricsMode',defaultPortfolioMetricsMode,@(x) any(validatestring(x,expectedPortfolioMetricsMode)));
-    addOptional(p,'windowLength',defaultWindowLength,@ischar);
-    addOptional(p,'holdingPeriodsOnly',defaultHoldingPeriodsOnly,@ischar);
-    addOptional(p,'shortSalesMode',defaultShortSalesMode,@ischar);
-    addOptional(p,'jumpsModel',defaultJumpsModel,@ischar);
-    addOptional(p,'noiseModel',defaultNoiseModel,@ischar);
-    addOptional(p,'fractalPriceModel',defaultFractalPriceModel,@ischar);
-    addOptional(p,'factorModel',defaultFactorModel,@ischar);
-    addOptional(p,'densityModel',defaultDensityModel,@ischar);
-    addOptional(p,'driftTerm',defaultDriftTerm,@ischar);
-    addOptional(p,'resultsNAFilter',defaultResultsNAFilter,@ischar);    
-    addOptional(p,'resultsSamplingInterval',defaultResultsSamplingInterval,@ischar);
-    addOptional(p,'inputSamplingInterval',defaultInputSamplingInterval,@ischar);
-    addOptional(p,'timeScale',defaultTimeScale,@ischar);
-    addOptional(p,'txnCostPerShare',defaultTxnCostPerShare,@isnumeric);
-    addOptional(p,'txnCostFixed',defaultTxnCostFixed,@isnumeric);
-    
-    
-    parse(p,portfolio,varargin{:});
+    p=struct(varargin{:});
 end
-
-portfolio.java.setParam('portfolioMetricsMode',p.Results.portfolioMetricsMode);
-portfolio.java.setParam('windowLength',p.Results.windowLength);
-portfolio.java.setParam('isHoldingPeriodEnabled',p.Results.holdingPeriodsOnly);
-portfolio.java.setParam('shortSalesMode',p.Results.shortSalesMode);
-portfolio.java.setParam('jumpsModel',p.Results.jumpsModel);
-portfolio.java.setParam('isNoiseModelEnabled',p.Results.noiseModel);
-portfolio.java.setParam('isFractalPriceModelEnabled',p.Results.fractalPriceModel);
-portfolio.java.setParam('factorModel',p.Results.factorModel);
-portfolio.java.setParam('samplingInterval',p.Results.resultsSamplingInterval);
-portfolio.java.setNaNFiltered(logical(str2num(p.Results.resultsNAFilter)));
-portfolio.java.setParam('priceSamplingInterval',p.Results.inputSamplingInterval);
-portfolio.java.setParam('densityApproxModel',p.Results.densityModel);
-portfolio.java.setParam('isDriftEnabled',p.Results.driftTerm);
-portfolio.java.setParam('timeScale',p.Results.timeScale);
-portfolio.java.setParam('txnCostPerShare',num2str(p.Results.txnCostPerShare));
-portfolio.java.setParam('txnCostFixed',num2str(p.Results.txnCostFixed));
+names=fieldnames(p);
+for i = 1:length(names)
+    name=char(names(i));
+    switch name
+        case 'portfolioMetricsMode'
+            portfolio.java.setParam('portfolioMetricsMode',p.portfolioMetricsMode);
+        case 'windowLength'
+            portfolio.java.setParam('windowLength',p.windowLength);
+        case 'holdingPeriodsOnly'
+            portfolio.java.setParam('isHoldingPeriodEnabled',p.holdingPeriodsOnly);
+        case 'shortSalesMode'
+            portfolio.java.setParam('shortSalesMode',p.shortSalesMode);
+        case 'jumpsModel'
+            portfolio.java.setParam('jumpsModel',p.jumpsModel);
+        case 'noiseModel'
+            portfolio.java.setParam('isNoiseModelEnabled',p.noiseModel);
+        case 'fractalPriceModel'
+            portfolio.java.setParam('isFractalPriceModelEnabled',p.fractalPriceModel);
+        case 'factorModel'
+            portfolio.java.setParam('factorModel',p.factorModel);
+        case 'densityModel'
+            portfolio.java.setParam('densityApproxModel',p.densityModel);
+        case 'driftTerm'
+            portfolio.java.setParam('isDriftEnabled',p.driftTerm);
+        case 'resultsNAFilter'
+            portfolio.java.setNaNFiltered(logical(str2num(p.resultsNAFilter)));
+        case 'resultsSamplingInterval'
+            portfolio.java.setParam('samplingInterval',p.resultsSamplingInterval);
+        case 'inputSamplingInterval'
+            portfolio.java.setParam('priceSamplingInterval',p.inputSamplingInterval);
+        case 'timeScale'
+            portfolio.java.setParam('timeScale',p.timeScale);
+        case 'txnCostPerShare'
+            portfolio.java.setParam('txnCostPerShare',num2str(p.txnCostPerShare));
+        case 'txnCostFixed'
+            portfolio.java.setParam('txnCostFixed',num2str(p.txnCostFixed));
+        otherwise
+            error('Wront setting name');
+    end
 end
-
+end

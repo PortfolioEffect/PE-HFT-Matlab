@@ -114,7 +114,7 @@ end
  end % disp
       end
       methods
-     function plot(varargin)
+function plot(varargin)
          global clientConnection
 if ~util_validateConnection()
     return;
@@ -126,7 +126,6 @@ bw=varargin{2};
 end
 
 p=portfolio_create(portfolioTemp);
-setting=portfolio_getSettings(p);
 porfolioSet=portfolio_getSettings(p);
 
 tempSet=porfolioSet;

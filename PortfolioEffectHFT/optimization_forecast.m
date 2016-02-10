@@ -49,9 +49,12 @@
 % portfolio_addPosition(portfolioExample,'GOOG',100,'priceData',data_goog);
 % portfolio_addPosition(portfolioExample,'AAPL',300,'priceData',data_aapl);
 % portfolio_addPosition(portfolioExample,'SPY',150,'priceData',data_spy);
-% portfolio_settings(portfolioExample,'price','3600s') 
+% portfolio_settings(portfolioExample,'portfolioMetricsMode','price','windowLength','3600s')
+% returnAAPL=position_return(portfolioExample,'AAPL');
+% time=returnAAPL(:,1);
 % optimizer=optimization_goal(portfolioExample,'Return','maximize');
 % optimizer=optimization_constraint_weight(optimizer,'>=',0.5,'GOOG');
+% optimizer=optimization_forecast(optimizer,'Return','AAPL',ones(length(time),1)/10000,time);
 % optimization_run(optimizer)
 function [ optimizer ] = optimization_forecast( optimizer,metricType,symbol,value,time )
 	optimizer.forecastedValueLists=[optimizer.forecastedValueLists,struct('metricType',metricType,'symbol',symbol,'value',value,'time',time)];

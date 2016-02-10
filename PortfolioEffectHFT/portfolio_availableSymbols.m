@@ -30,7 +30,7 @@
 % portfolio_addPosition(portfolioExample,'AAPL',100);
 % portfolio_addPosition(portfolioExample,'C',300); 
 % portfolio_addPosition(portfolioExample,'GOOG',150);
-% availableSymbols=portfolio_availableSymbols(portfolio);
+% availableSymbols=portfolio_availableSymbols(portfolioExample);
 % availableSymbols.id
 function [ result ] = portfolio_availableSymbols(portfolio)
 	data=portfolio.java.getAllSymbolsList;

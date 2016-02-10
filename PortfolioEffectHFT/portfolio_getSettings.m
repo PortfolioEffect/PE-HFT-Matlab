@@ -31,7 +31,7 @@
 % portfolio_addPosition(portfolioExample,'AAPL',100);
 % portfolio_addPosition(portfolioExample,'C',300); 
 % portfolio_addPosition(portfolioExample,'GOOG',150);
-% portfolio_getSettings(portfolio)
+% portfolio_getSettings(portfolioExample)
 function [ result ] = portfolio_getSettings( portfolio )
 tf_words = {'false','true'};
 result=struct('portfolioMetricsMode',char(portfolio.java.getParam('portfolioMetricsMode')),...
